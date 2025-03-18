@@ -32,6 +32,16 @@ func init(root: CrawlerRoot):
 	current_map_length = rooms[0].length + rooms[1].length - room_gap
 	rooms[0].id = 0
 	rooms[1].id = 1
+	rooms[1].set_door_visible(false)
+
+func open_room(id: int):
+	if id < rooms.size():
+		rooms[id].set_door_visible(false)
+
+func clear_room(room_id:int):
+	if room_id<0 || room_id>=rooms.size():
+		return
+	rooms[room_id].queue_free()
 
 func append_room():
 	var room : Room = get_random_room().instantiate()

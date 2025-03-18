@@ -20,14 +20,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.41)
 navigation_mesh = SubResource("NavigationMesh_nl6f1")
 
 [node name="walls" type="CSGCombiner3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 material_override = ExtResource("2_aqlpr")
 use_collision = true
 
 [node name="wall_0" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.22, 1.45, -0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.18, 1.49, -0.215)
 material_override = ExtResource("2_aqlpr")
 use_collision = true
-size = Vector3(0.5, 3, 14.46)
+size = Vector3(0.5, 3, 14.69)
 
 [node name="wall_3" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, -4.12944, 1.45, 1.44296)

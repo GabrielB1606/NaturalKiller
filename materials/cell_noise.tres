@@ -1,0 +1,14 @@
+[gd_resource type="FastNoiseLite" format=3 uid="uid://bhp2w48lmrksu"]
+
+[resource]
+noise_type = 2
+seed = 315
+frequency = 0.0125
+offset = Vector3(22.9, 0, 0)
+fractal_type = 2
+fractal_octaves = 1
+fractal_lacunarity = 4.6
+fractal_gain = 0.0
+fractal_ping_pong_strength = -0.5
+cellular_distance_function = 3
+cellular_return_type = 4

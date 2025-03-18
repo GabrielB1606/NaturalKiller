@@ -5,8 +5,8 @@
 [ext_resource type="Material" uid="uid://cx4301xkuyplj" path="res://materials/wall_material.tres" id="2_ltfpd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_nl6f1"]
-vertices = PackedVector3Array(6.488, 0.5, -6.76, 6.238, 0.5, -7.26, -6.512, 0.5, -7.26, -6.762, 0.5, -6.76, -8.262, 0.5, 6.24, 8.488, 0.5, 6.24, -8.262, 0.5, -6.76, 8.488, 0.5, -6.76)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(4, 6, 3), PackedInt32Array(0, 7, 5)]
+vertices = PackedVector3Array(6.238, 0.5, -7.51, -6.512, 0.5, -7.51, -6.762, 0.5, -7.01, 6.488, 0.5, -6.76, 8.488, 0.5, 6.24, 8.488, 0.5, -6.76, -8.262, 0.5, -7.01, -8.262, 0.5, 6.24)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 5, 4), PackedInt32Array(6, 2, 7), PackedInt32Array(7, 2, 3), PackedInt32Array(7, 3, 4)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4bt5b"]
 
@@ -17,37 +17,45 @@ script = ExtResource("1_muhmn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.52)
 navigation_mesh = SubResource("NavigationMesh_nl6f1")
 
-[node name="floor" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, -0.5, 0)
+[node name="floor" type="CSGCombiner3D" parent="NavigationRegion3D"]
 material_override = ExtResource("1_pdgvd")
 use_collision = true
-size = Vector3(23.78, 1, 21.48)
 
-[node name="wall_0" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="floor" type="CSGBox3D" parent="NavigationRegion3D/floor"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, -0.5, -0.2135)
+material_override = ExtResource("1_pdgvd")
+use_collision = true
+size = Vector3(23.78, 1, 22.09)
+
+[node name="walls" type="CSGCombiner3D" parent="NavigationRegion3D"]
+material_override = ExtResource("2_ltfpd")
+use_collision = true
+
+[node name="wall_0" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.22, 1.45, -0.25)
 material_override = ExtResource("2_ltfpd")
 use_collision = true
 size = Vector3(0.5, 3, 14.46)
 
-[node name="wall_1" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="wall_1" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27, 1.45, -0.0799999)
 material_override = ExtResource("2_ltfpd")
 use_collision = true
 size = Vector3(0.5, 3, 14.72)
 
-[node name="wall_2" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="wall_2" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.285, 1.45, -7.76)
 material_override = ExtResource("2_ltfpd")
 use_collision = true
 size = Vector3(2.42, 3, 0.5)
 
-[node name="wall_4" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="wall_4" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.19, 1.45, -7.62)
 material_override = ExtResource("2_ltfpd")
 use_collision = true
 size = Vector3(2.65, 3, 0.5)
 
-[node name="wall_3" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="wall_3" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00499916, 1.45, 7.22)
 material_override = ExtResource("2_ltfpd")
 use_collision = true

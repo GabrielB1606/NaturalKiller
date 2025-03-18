@@ -4,7 +4,7 @@ class_name Room extends Node3D
 
 var width := 10
 var length := 10
-var enemies_left := 10
+var enemies_left := 2
 var id : int = -1
 
 var locked := false
@@ -19,14 +19,17 @@ func _ready() -> void:
 	locked = false
 	spawners_active = false
 	entered = false
-	enemies_left = 10
-	set_door_visible(false)
+	enemies_left = 2
+	set_door_visible(true)
 
 func check_complete():
 	if CrawlerManager.current_enemies <= 0 && enemies_left <= 0:
 		locked = false
-		set_door_visible(false)
+		#set_door_visible(false)
 		spawners_active = false
+		CrawlerManager.open_room(id+1)
+		CrawlerManager.clear_room(id-2)
+			
 
 func can_spawn_enemy() -> bool:
 	return spawners_active && CrawlerManager.can_spawn_enemy() && enemies_left > 0

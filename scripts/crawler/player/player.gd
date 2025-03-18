@@ -92,7 +92,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
-	lifetime += delta
-	stats.current_health -= delta
+	if CrawlerManager.current_enemies > 0:
+		lifetime += delta
+		stats.current_health -= delta
 	if stats.current_health <= 0:
 		dead_menu.handleDeath()

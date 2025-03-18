@@ -1,0 +1,19 @@
+[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://2gvrc3bkj4qi"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dtvx1"]
+noise_type = 2
+seed = 315
+frequency = 0.0165
+offset = Vector3(22.9, 0, 0)
+fractal_type = 2
+fractal_octaves = 1
+fractal_lacunarity = 4.6
+fractal_gain = 0.0
+fractal_ping_pong_strength = -0.5
+cellular_distance_function = 3
+cellular_return_type = 4
+
+[resource]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_dtvx1")

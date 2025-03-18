@@ -1,0 +1,9 @@
+[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://y17lqbhjk2r7"]
+
+[ext_resource type="FastNoiseLite" uid="uid://bhp2w48lmrksu" path="res://materials/cell_noise.tres" id="1_oijdx"]
+
+[resource]
+width = 1024
+height = 1024
+seamless = true
+noise = ExtResource("1_oijdx")

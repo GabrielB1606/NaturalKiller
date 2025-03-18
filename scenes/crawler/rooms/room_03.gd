@@ -7,5 +7,4 @@ func _ready() -> void:
 
 
 func _on_enter_area_area_entered(area: Area3D) -> void:
-	print("room 3 entered")
 	onEntered()
