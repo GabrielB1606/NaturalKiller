@@ -17,7 +17,7 @@ size = Vector3(2.19, 1, 1)
 script = ExtResource("1_tensv")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.84)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.66)
 navigation_mesh = SubResource("NavigationMesh_nl6f1")
 
 [node name="walls" type="CSGCombiner3D" parent="NavigationRegion3D"]
@@ -37,16 +37,10 @@ use_collision = true
 size = Vector3(0.5, 3, 3.87)
 
 [node name="wall_9" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(-0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, -0.766044, -5.63084, 1.45, -5.53394)
+transform = Transform3D(-0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, -0.766044, -5.64691, 1.45, -5.55309)
 material_override = ExtResource("2_s2ui8")
 use_collision = true
-size = Vector3(0.5, 3, 4.73)
-
-[node name="wall_10" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(5.96046e-07, 0, -1, 0, 1, 0, 1, 0, 5.96046e-07, -7.98584, 1.45, -7.20394)
-material_override = ExtResource("2_s2ui8")
-use_collision = true
-size = Vector3(0.5, 3, 2)
+size = Vector3(0.5, 3, 4.78)
 
 [node name="wall_8" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(-5.36442e-07, 0, 1, 0, 1, 0, -1, 0, -5.36442e-07, -0.949436, 1.45, -3.82454)
@@ -98,11 +92,27 @@ use_collision = true
 size = Vector3(5.8, 3, 0.5)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3773, 1.54596, 7.70877)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3773, 1.54596, 7.57877)
+height = 3.14
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3227, 1.54596, 1.13877)
+height = 3.14
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4827, 1.54596, 1.71877)
+height = 3.14
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2773, 1.54596, -3.85123)
+height = 3.14
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0073, 1.54596, -7.07123)
 height = 3.14
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2427, 1.54596, 7.70877)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4227, 1.54596, 7.56877)
 height = 3.14
 
 [node name="floor" type="CSGCombiner3D" parent="NavigationRegion3D"]
@@ -122,21 +132,21 @@ use_collision = true
 size = Vector3(23.78, 1, 21.48)
 
 [node name="EnterArea" type="Area3D" parent="."]
-transform = Transform3D(2.6, 0, 0, 0, 1, 0, 0, 0, 0.6, -1.08, 1.43, -2.98)
+transform = Transform3D(2.6, 0, 0, 0, 1, 0, 0, 0, 0.6, -1.08, 1.43, -1.8)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnterArea"]
 transform = Transform3D(2.86, 0, 0, 0, 1, 0, 0, 0, 1, 0.1973, 0, 0.383338)
 shape = SubResource("BoxShape3D_4bt5b")
 
 [node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("room")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47, 1.2, -7.42)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47, 1.2, -6.24)
 script = ExtResource("4_jaje6")
 room = NodePath("..")
 
 [node name="Timer" type="Timer" parent="Spawner"]
 
 [node name="Spawner2" type="Node3D" parent="." node_paths=PackedStringArray("room")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33, 1.2, -11.12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33, 1.2, -9.94)
 script = ExtResource("4_jaje6")
 room = NodePath("..")
 

@@ -32,6 +32,12 @@ func _ready() -> void:
 		head_mat.albedo_color = Color(1, 0, 0, 0.75)
 		var head_node: MeshInstance3D = get_node("Skeleton3D/mesh/head_tcell_int_002")
 		head_node.material_override = head_mat
+	elif type == CrawlerManager.TeamEnum.NEUTRAL:
+		var head_mat : StandardMaterial3D = get_node("Skeleton3D/mesh/head_tcell_int_002").material_override
+		head_mat = head_mat.duplicate()
+		head_mat.albedo_color = Color(0, 0.125, 1, 0.75)
+		var head_node: MeshInstance3D = get_node("Skeleton3D/mesh/head_tcell_int_002")
+		head_node.material_override = head_mat
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

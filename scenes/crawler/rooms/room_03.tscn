@@ -17,7 +17,7 @@ size = Vector3(2.72, 1.86, 1)
 script = ExtResource("1_7n2i4")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.47)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.51)
 navigation_mesh = SubResource("NavigationMesh_nl6f1")
 
 [node name="walls" type="CSGCombiner3D" parent="NavigationRegion3D"]
@@ -37,10 +37,10 @@ use_collision = true
 size = Vector3(0.5, 3, 4.12)
 
 [node name="wall_14" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(5.96046e-07, 0, -1, 0, 1, 0, 1, 0, 5.96046e-07, -6.63584, 1.45, 7.24606)
+transform = Transform3D(5.96046e-07, 0, -1, 0, 1, 0, 1, 0, 5.96046e-07, -7.53584, 1.45, 7.24606)
 material_override = ExtResource("2_iya1q")
 use_collision = true
-size = Vector3(0.5, 3, 4.12)
+size = Vector3(0.5, 3, 5.92)
 
 [node name="door" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(5.96046e-07, 0, -1, 0, 1, 0, 1, 0, 5.96046e-07, -1.20584, 1.45, 7.95606)
@@ -56,16 +56,16 @@ use_collision = true
 size = Vector3(0.5, 3, 4.29)
 
 [node name="wall_12" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(-1, 0, -5.52335e-07, 0, 1, 0, 5.52335e-07, 0, -1, 8.45416, 1.45, -9.64894)
+transform = Transform3D(-1, 0, -5.52335e-07, 0, 1, 0, 5.52335e-07, 0, -1, 8.45416, 1.45, -9.42394)
 material_override = ExtResource("2_iya1q")
 use_collision = true
-size = Vector3(0.5, 3, 4.29)
+size = Vector3(0.5, 3, 4.96)
 
 [node name="wall_13" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(-1, 0, -5.52335e-07, 0, 1, 0, 5.52335e-07, 0, -1, -8.41584, 1.45, -9.64894)
+transform = Transform3D(-1, 0, -5.52335e-07, 0, 1, 0, 5.52335e-07, 0, -1, -8.41584, 1.45, -9.39894)
 material_override = ExtResource("2_iya1q")
 use_collision = true
-size = Vector3(0.5, 3, 4.29)
+size = Vector3(0.5, 3, 4.93)
 
 [node name="wall_8" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(-5.36442e-07, 0, 1, 0, 1, 0, -1, 0, -5.36442e-07, -2.24444, 1.45, -3.82454)
@@ -85,11 +85,27 @@ material_override = ExtResource("2_iya1q")
 use_collision = true
 size = Vector3(0.5, 3, 14.72)
 
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.1827, 1.45596, 7.46123)
+height = 3.14
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.7073, 1.45596, 7.46123)
+height = 3.14
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.1827, 1.45596, -7.30877)
+height = 3.14
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.0873, 1.45596, -7.30877)
+height = 3.14
+
 [node name="wall_5" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5.14, 1.45, 7.39)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5.78, 1.45, 7.23)
 material_override = ExtResource("2_iya1q")
 use_collision = true
-size = Vector3(7.01, 3, 0.5)
+size = Vector3(8.29, 3, 0.5)
 
 [node name="floor" type="CSGCombiner3D" parent="NavigationRegion3D"]
 material_override = ExtResource("1_wbc8f")
@@ -114,14 +130,14 @@ use_collision = true
 size = Vector3(23.78, 1, 21.48)
 
 [node name="EnterArea" type="Area3D" parent="."]
-transform = Transform3D(2.6, 0, 0, 0, 1, 0, 0, 0, 0.6, -0.7, 1.43, -2.05)
+transform = Transform3D(2.6, 0, 0, 0, 1, 0, 0, 0, 0.6, -0.7, 1.43, -1.09)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnterArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148459, -0.1, -0.733327)
 shape = SubResource("BoxShape3D_4bt5b")
 
 [node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("room")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93, 1.2, -7.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93, 1.2, -6.09)
 script = ExtResource("4_7vt0j")
 room = NodePath("..")
 

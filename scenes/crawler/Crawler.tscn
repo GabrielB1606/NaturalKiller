@@ -20,6 +20,10 @@ sky_material = SubResource("ProceduralSkyMaterial_75y1u")
 background_mode = 2
 sky = SubResource("Sky_oh14c")
 tonemap_mode = 2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(1, 0.648568, 0.594259, 1)
+fog_density = 1.0
 
 [node name="Crawler" type="Node3D"]
 script = ExtResource("1_lvomn")

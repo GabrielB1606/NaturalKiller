@@ -17,7 +17,7 @@ var room03_prefab := preload("res://scenes/crawler/rooms/room_03.tscn")
 var room04_prefab := preload("res://scenes/crawler/rooms/room_04.tscn")
 
 var rooms:Array[Room]
-const room_gap := 0.7
+const room_gap := 0
 
 func init(root: CrawlerRoot):
 	current_enemies = 0

@@ -2,7 +2,7 @@ extends Room
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	length = 28
+	length = 30.5
 	super._ready()
 
 
