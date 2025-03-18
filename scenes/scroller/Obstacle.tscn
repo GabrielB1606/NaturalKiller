@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://r0usiegjvox1"]
+
+[ext_resource type="Script" path="res://scripts/scroller/obstacle_area.gd" id="1_out2j"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7k03j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f760v"]
+albedo_color = Color(0.773364, 0.332505, 0.337872, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_1yowk"]
+
+[node name="Coin" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_out2j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_7k03j")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+material_override = SubResource("StandardMaterial3D_f760v")
+mesh = SubResource("SphereMesh_1yowk")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://8oqjffmibcdy"]
+
+[ext_resource type="Script" path="res://scripts/crawler/player/player.gd" id="1_kenrv"]
+[ext_resource type="PackedScene" uid="uid://cjjueyjd1akmm" path="res://characters/TCell.tscn" id="2_6mqvs"]
+[ext_resource type="Script" path="res://scripts/crawler/player/states/idle.gd" id="3_ikehw"]
+[ext_resource type="Script" path="res://scripts/crawler/player/camera_point_check.gd" id="3_ja08e"]
+[ext_resource type="Script" path="res://scripts/crawler/player/states/move.gd" id="4_qm73h"]
+[ext_resource type="Script" path="res://scripts/crawler/player/camera_point.gd" id="5_eh0yg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ik57"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_kenrv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01413, 0)
+shape = SubResource("CapsuleShape3D_1ik57")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="TCell" parent="Visuals" instance=ExtResource("2_6mqvs")]
+transform = Transform3D(0.9, 0, 1.57361e-07, 0, 0.9, 0, -1.57361e-07, 0, 0.9, 0, 0, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Visuals"]
+script = ExtResource("3_ja08e")
+
+[node name="StateMachine" type="LimboHSM" parent="."]
+
+[node name="Idle" type="LimboState" parent="StateMachine"]
+script = ExtResource("3_ikehw")
+
+[node name="Move" type="LimboState" parent="StateMachine"]
+script = ExtResource("4_qm73h")
+
+[node name="Jump" type="LimboState" parent="StateMachine"]
+
+[node name="Fall" type="LimboState" parent="StateMachine"]
+
+[node name="Dive" type="LimboState" parent="StateMachine"]
+
+[node name="Hold" type="LimboState" parent="StateMachine"]
+
+[node name="CameraPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, -0.0100001, 7.71866, 6.82589)
+script = ExtResource("5_eh0yg")

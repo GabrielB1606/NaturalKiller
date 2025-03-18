@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://ssy4xi0lo7lr"]
+
+[ext_resource type="Script" path="res://scripts/crawler/crawler.gd" id="1_lvomn"]
+[ext_resource type="PackedScene" uid="uid://8oqjffmibcdy" path="res://scripts/crawler/player/player/Player.tscn" id="3_4637n"]
+[ext_resource type="PackedScene" uid="uid://u6g3xmymh5du" path="res://scenes/crawler/CameraRig.tscn" id="4_bhgq4"]
+[ext_resource type="Script" path="res://scripts/crawler/timer.gd" id="6_rxowc"]
+[ext_resource type="PackedScene" uid="uid://chuh01o644lua" path="res://scenes/gui/pause_menu.tscn" id="7_3ljse"]
+[ext_resource type="PackedScene" uid="uid://cogrysbnmcotx" path="res://scenes/gui/dead_menu.tscn" id="8_flo80"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_75y1u"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(0.75, 0.75, 0.75, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.75, 0.75, 0.75, 1)
+
+[sub_resource type="Sky" id="Sky_oh14c"]
+sky_material = SubResource("ProceduralSkyMaterial_75y1u")
+
+[sub_resource type="Environment" id="Environment_twqqc"]
+background_mode = 2
+sky = SubResource("Sky_oh14c")
+tonemap_mode = 2
+
+[node name="Crawler" type="Node3D"]
+script = ExtResource("1_lvomn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_twqqc")
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera_rig") instance=ExtResource("3_4637n")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.79, -0.06, -5.45)
+camera_rig = NodePath("../CameraRig")
+
+[node name="CameraRig" parent="." instance=ExtResource("4_bhgq4")]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_rxowc")
+
+[node name="Seconds" type="Label" parent="Control/Timer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.5
+offset_top = -67.0
+offset_right = 48.5
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseMenu" parent="Control" instance=ExtResource("7_3ljse")]
+layout_mode = 1
+
+[node name="DeadMenu" parent="Control" instance=ExtResource("8_flo80")]
+layout_mode = 1
+
+[node name="Map" type="Node3D" parent="."]

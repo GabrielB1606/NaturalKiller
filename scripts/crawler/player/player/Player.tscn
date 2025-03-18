@@ -1,0 +1,91 @@
+[gd_scene load_steps=16 format=3 uid="uid://8oqjffmibcdy"]
+
+[ext_resource type="Script" path="res://scripts/crawler/player/player.gd" id="1_kenrv"]
+[ext_resource type="PackedScene" uid="uid://cjjueyjd1akmm" path="res://characters/Cell.tscn" id="2_ylj5o"]
+[ext_resource type="Script" path="res://scripts/crawler/player/states/idle.gd" id="3_ikehw"]
+[ext_resource type="Script" path="res://scripts/crawler/player/camera_point_check.gd" id="3_ja08e"]
+[ext_resource type="Script" path="res://scripts/crawler/player/movement_state_machine.gd" id="4_md16l"]
+[ext_resource type="Script" path="res://scripts/crawler/player/states/move.gd" id="4_qm73h"]
+[ext_resource type="Script" path="res://scripts/crawler/player/camera_point.gd" id="5_eh0yg"]
+[ext_resource type="Script" path="res://scripts/crawler/player/fighting_state_machine.gd" id="9_liwb0"]
+[ext_resource type="Script" path="res://scripts/crawler/player/player/passive.gd" id="10_beywk"]
+[ext_resource type="Script" path="res://scripts/crawler/player/player/reach.gd" id="10_iiedv"]
+[ext_resource type="Script" path="res://scripts/crawler/player/player/hold.gd" id="11_6tkyh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1ik57"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uu7vg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5io43"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sx6xc"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_kenrv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.845723, 0, 0.307818, 0, 0.9, 0, -0.307818, 0, 0.845723, 0, 0.99413, -3.72529e-09)
+shape = SubResource("CapsuleShape3D_1ik57")
+
+[node name="Visuals" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Cell" parent="Visuals" instance=ExtResource("2_ylj5o")]
+transform = Transform3D(-0.81, 0, -7.08124e-08, 0, 0.81, 0, 7.08124e-08, 0, -0.81, 0, 0, 0)
+
+[node name="HoldArea" type="Area3D" parent="Visuals"]
+transform = Transform3D(1.74846e-08, 0.4, -3.49691e-08, 0.4, -1.74846e-08, 0, -1.52855e-15, -3.49691e-08, -0.4, 0.02, 1.26, -0.66)
+collision_layer = 2
+collision_mask = 2
+
+[node name="HoldCollision" type="CollisionShape3D" parent="Visuals/HoldArea"]
+transform = Transform3D(1, -3.55271e-15, 0, 3.55271e-15, 1, 3.38813e-21, -4.03897e-28, -3.38813e-21, 1, 0, 0, 0.15)
+shape = SubResource("CapsuleShape3D_uu7vg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals/HoldArea"]
+visible = false
+mesh = SubResource("CapsuleMesh_5io43")
+
+[node name="HeadHB" type="Area3D" parent="Visuals"]
+collision_mask = 3
+
+[node name="HeadCollision" type="CollisionShape3D" parent="Visuals/HeadHB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03217e-08, 1.58, -0.69)
+shape = SubResource("SphereShape3D_sx6xc")
+
+[node name="MovementStateMachine" type="LimboHSM" parent="."]
+script = ExtResource("4_md16l")
+NPC = false
+
+[node name="Idle" type="LimboState" parent="MovementStateMachine"]
+script = ExtResource("3_ikehw")
+
+[node name="Move" type="LimboState" parent="MovementStateMachine"]
+script = ExtResource("4_qm73h")
+
+[node name="Fall" type="LimboState" parent="MovementStateMachine"]
+
+[node name="Dive" type="LimboState" parent="MovementStateMachine"]
+
+[node name="CameraPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.499999, 0.866026, 0, -0.866026, 0.499999, -0.0100001, 6.922, 4.1858)
+script = ExtResource("5_eh0yg")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29, 0)
+script = ExtResource("3_ja08e")
+
+[node name="FightingStateMachine" type="LimboHSM" parent="."]
+script = ExtResource("9_liwb0")
+NPC = false
+
+[node name="Passive" type="LimboState" parent="FightingStateMachine"]
+script = ExtResource("10_beywk")
+
+[node name="Reach" type="LimboState" parent="FightingStateMachine"]
+script = ExtResource("10_iiedv")
+
+[node name="Hold" type="LimboState" parent="FightingStateMachine"]
+script = ExtResource("11_6tkyh")
+
+[connection signal="body_entered" from="Visuals/HoldArea" to="FightingStateMachine/Reach" method="_on_hold_area_body_entered"]

@@ -1,0 +1,139 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnjphmqgafef3"]
+
+[ext_resource type="Material" uid="uid://bsbdxee7lf52g" path="res://materials/floor_material.tres" id="1_kfkwh"]
+[ext_resource type="Script" path="res://scenes/crawler/rooms/room_02.gd" id="1_tensv"]
+[ext_resource type="Material" uid="uid://cx4301xkuyplj" path="res://materials/wall_material.tres" id="2_s2ui8"]
+[ext_resource type="Script" path="res://scripts/crawler/npcs/spawner.gd" id="4_jaje6"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_nl6f1"]
+vertices = PackedVector3Array(1.538, 0.5, -6.998, -5.742, 0.5, -6.998, -3.922, 0.5, -4.658, 1.538, 0.5, -4.658, 2.578, 0.5, -4.658, 2.968, 0.5, -4.268, 8.428, 0.5, -3.488, 8.428, 0.5, -6.998, 2.968, 0.5, -3.488, -4.442, 0.5, 0.152, -4.182, 0.5, 0.152, -4.182, 0.5, -2.968, -4.572, 0.5, -2.968, -5.092, 0.5, -3.488, -7.302, 0.5, -6.348, -8.342, 0.5, -6.348, -8.342, 0.5, 4.052, -5.222, 0.5, 1.062, -6.782, 0.5, 4.052, 5.438, 0.5, 1.322, 5.438, 0.5, 1.842, 8.428, 0.5, 1.842, 2.578, 0.5, -2.968, 1.668, 0.5, -2.968, 1.668, 0.5, 0.282, 4.788, 0.5, 0.802, -3.142, 0.5, 0.802, -3.272, 0.5, 1.322, -0.412001, 0.5, 1.972, 1.018, 0.5, 0.282, -6.392, 0.5, 4.702, -8.342, 0.5, 6.392, -1.842, 0.5, 4.052, -1.842, 0.5, 3.662, -5.482, 0.5, 4.962, -4.052, 0.5, 6.392, -3.662, 0.5, 6.912, -1.322, 0.5, 4.572, 4.398, 0.5, 5.612, 4.008, 0.5, 5.612, 4.008, 0.5, 6.522, 4.918, 0.5, 5.092, 8.428, 0.5, 6.522, 3.098, 0.5, 5.092, 1.408, 0.5, 6.522, 3.618, 0.5, 2.362, 2.968, 0.5, 2.232, 1.538, 0.5, 2.102, 0.108, 0.5, 4.052, -0.672, 0.5, 4.702, 1.018, 0.5, 7.042, -3.792, 0.5, 8.342, 1.278, 0.5, 8.342)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(4, 3, 0), PackedInt32Array(4, 0, 5), PackedInt32Array(5, 0, 7), PackedInt32Array(5, 7, 6), PackedInt32Array(5, 6, 8), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 12), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 9), PackedInt32Array(15, 9, 17), PackedInt32Array(15, 17, 16), PackedInt32Array(9, 13, 12), PackedInt32Array(16, 17, 18), PackedInt32Array(21, 20, 19), PackedInt32Array(24, 23, 22), PackedInt32Array(19, 25, 21), PackedInt32Array(21, 25, 6), PackedInt32Array(6, 25, 8), PackedInt32Array(22, 8, 24), PackedInt32Array(24, 8, 25), PackedInt32Array(28, 27, 26), PackedInt32Array(23, 24, 29), PackedInt32Array(10, 11, 26), PackedInt32Array(26, 11, 28), PackedInt32Array(28, 11, 29), PackedInt32Array(29, 11, 23), PackedInt32Array(18, 30, 16), PackedInt32Array(16, 30, 31), PackedInt32Array(33, 32, 27), PackedInt32Array(27, 32, 34), PackedInt32Array(34, 32, 35), PackedInt32Array(27, 28, 33), PackedInt32Array(34, 35, 30), PackedInt32Array(30, 35, 31), PackedInt32Array(32, 37, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(40, 39, 38), PackedInt32Array(38, 41, 40), PackedInt32Array(40, 41, 42), PackedInt32Array(20, 21, 41), PackedInt32Array(41, 21, 42), PackedInt32Array(39, 40, 43), PackedInt32Array(43, 40, 44), PackedInt32Array(46, 45, 47), PackedInt32Array(47, 45, 43), PackedInt32Array(47, 43, 48), PackedInt32Array(48, 43, 44), PackedInt32Array(50, 49, 44), PackedInt32Array(44, 49, 48), PackedInt32Array(49, 50, 37), PackedInt32Array(37, 50, 52), PackedInt32Array(37, 52, 36), PackedInt32Array(36, 52, 51)]
+cell_size = 0.13
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4bt5b"]
+size = Vector3(2.19, 1, 1)
+
+[node name="room02" type="Node3D"]
+script = ExtResource("1_tensv")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.84)
+navigation_mesh = SubResource("NavigationMesh_nl6f1")
+
+[node name="walls" type="CSGCombiner3D" parent="NavigationRegion3D"]
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+
+[node name="wall_0" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.22, 1.45, -0.155001)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(0.5, 3, 14.65)
+
+[node name="wall_3" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-0.866026, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866026, -4.97444, 1.45, 2.51546)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(0.5, 3, 3.87)
+
+[node name="wall_9" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, -0.766044, -5.63084, 1.45, -5.53394)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(0.5, 3, 4.73)
+
+[node name="wall_10" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(5.96046e-07, 0, -1, 0, 1, 0, 1, 0, 5.96046e-07, -7.98584, 1.45, -7.20394)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(0.5, 3, 2)
+
+[node name="wall_8" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-5.36442e-07, 0, 1, 0, 1, 0, -1, 0, -5.36442e-07, -0.949436, 1.45, -3.82454)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(0.5, 3, 6.72)
+
+[node name="wall_4" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-0.766045, 0, 0.642787, 0, 1, 0, -0.642787, 0, -0.766045, 0.215564, 1.45, 2.51546)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(0.5, 3, 3.87)
+
+[node name="wall_11" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, 2.81056, 1.45, 1.39546)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(0.5, 3, 3.18)
+
+[node name="wall_7" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, -0.984808, 4.29952, 1.45, 3.22318)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(0.5, 3, 3.57)
+
+[node name="wall_1" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27, 1.45, -0.0799999)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(0.5, 3, 14.72)
+
+[node name="wall_5" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5.585, 1.45, 7.39)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(7.9, 3, 0.5)
+
+[node name="wall_6" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6.845, 1.45, 7.39)
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(5.26, 3, 0.5)
+
+[node name="door" type="CSGBox3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.285, 1.45, 7.88)
+visible = false
+material_override = ExtResource("2_s2ui8")
+use_collision = true
+size = Vector3(5.8, 3, 0.5)
+
+[node name="floor" type="CSGCombiner3D" parent="NavigationRegion3D"]
+material_override = ExtResource("1_kfkwh")
+use_collision = true
+
+[node name="floor3" type="CSGBox3D" parent="NavigationRegion3D/floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.265, -0.5, 8.07)
+material_override = ExtResource("1_kfkwh")
+use_collision = true
+size = Vector3(6.01, 1, 1.52)
+
+[node name="floor" type="CSGBox3D" parent="NavigationRegion3D/floor"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, -0.5, 0)
+material_override = ExtResource("1_kfkwh")
+use_collision = true
+size = Vector3(23.78, 1, 21.48)
+
+[node name="EnterArea" type="Area3D" parent="."]
+transform = Transform3D(2.6, 0, 0, 0, 1, 0, 0, 0, 0.6, -1.08, 1.43, -2.98)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnterArea"]
+transform = Transform3D(2.86, 0, 0, 0, 1, 0, 0, 0, 1, 0.1973, 0, 0.383338)
+shape = SubResource("BoxShape3D_4bt5b")
+
+[node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("room")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47, 1.2, -7.42)
+script = ExtResource("4_jaje6")
+room = NodePath("..")
+
+[node name="Timer" type="Timer" parent="Spawner"]
+
+[node name="Spawner2" type="Node3D" parent="." node_paths=PackedStringArray("room")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33, 1.2, -11.12)
+script = ExtResource("4_jaje6")
+room = NodePath("..")
+
+[node name="Timer" type="Timer" parent="Spawner2"]
+
+[connection signal="area_entered" from="EnterArea" to="." method="_on_enter_area_area_entered"]
+[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner2/Timer" to="Spawner2" method="_on_timer_timeout"]

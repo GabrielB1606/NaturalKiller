@@ -1,0 +1,87 @@
+[gd_scene load_steps=14 format=3 uid="uid://b56qmapxsan13"]
+
+[ext_resource type="Script" path="res://scripts/scroller/hex_game.gd" id="1_nnj7g"]
+[ext_resource type="Shader" path="res://shaders/neuronal.gdshader" id="2_40bpn"]
+[ext_resource type="PackedScene" uid="uid://cjjueyjd1akmm" path="res://characters/Cell.tscn" id="3_gn0c0"]
+[ext_resource type="Script" path="res://scripts/scroller/tube.gd" id="6_ji5vy"]
+[ext_resource type="PackedScene" uid="uid://chuh01o644lua" path="res://scenes/gui/pause_menu.tscn" id="6_jsanv"]
+[ext_resource type="Script" path="res://scripts/scroller/spawner.gd" id="7_e5ghg"]
+[ext_resource type="PackedScene" uid="uid://cogrysbnmcotx" path="res://scenes/gui/dead_menu.tscn" id="7_laphd"]
+[ext_resource type="PackedScene" uid="uid://cv64i80vqf6qe" path="res://scenes/scroller/test_tube_blender.tscn" id="9_nf202"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7xae"]
+render_priority = 0
+shader = ExtResource("2_40bpn")
+shader_parameter/mouse_position = Vector2(0.5, 0.5)
+shader_parameter/wave_color = Color(1, 0, 0, 1)
+shader_parameter/wave_transparency = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_swjub"]
+radius = 0.35
+height = 1.74
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tfyif"]
+sky_top_color = Color(1, 1, 1, 1)
+sky_horizon_color = Color(0.75, 0.75, 0.75, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.75, 0.75, 0.75, 1)
+
+[sub_resource type="Sky" id="Sky_b0av8"]
+sky_material = SubResource("ProceduralSkyMaterial_tfyif")
+
+[sub_resource type="Environment" id="Environment_mks5b"]
+background_mode = 2
+sky = SubResource("Sky_b0av8")
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 3
+
+[node name="HexGame" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_nnj7g")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.00844765, 1.35136e-07)
+visible = false
+material_override = SubResource("ShaderMaterial_w7xae")
+radial_segments = 24
+rings = 12
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.5, 0.866025, 0, -0.866025, -0.5, 0, 36, -1.76)
+fov = 90.0
+
+[node name="Player" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 8.74228e-08, -4.37114e-08, -1, -3.82137e-15, -1, 4.37114e-08, -0.0300001, 33.68, 2.06999)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 1.9421e-35, 1, 0, 0, 0, 1, -0.0500005, 0.02, 1.73)
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/CharacterBody3D"]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, -3, 0, 3, -1.31134e-07, 0.0220356, -0.481509, 0.320002)
+shape = SubResource("CapsuleShape3D_swjub")
+
+[node name="front" parent="Player/CharacterBody3D" instance=ExtResource("3_gn0c0")]
+transform = Transform3D(1, 0, -2.13163e-14, 2.5411e-21, 1, -1.20371e-34, 2.13163e-14, 0, 1, 0.0100001, -1.87001, 2.44)
+
+[node name="back" parent="Player/CharacterBody3D" instance=ExtResource("3_gn0c0")]
+transform = Transform3D(1, 0, -2.13163e-14, 2.5411e-21, 1, -2.16667e-34, 2.13163e-14, 0, 1, 0.0100005, -1.87001, -2.06)
+
+[node name="Spawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("7_e5ghg")
+
+[node name="SpawnTimer" type="Timer" parent="Spawner"]
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_jsanv")]
+
+[node name="DeadMenu" parent="." instance=ExtResource("7_laphd")]
+
+[node name="test_tube2_culling_fix" parent="." instance=ExtResource("9_nf202")]
+transform = Transform3D(-4.50613e-07, 0, 7.92986, -10.3088, -3.46625e-07, -3.46625e-07, 4.50613e-07, -7.92986, -1.3021e-14, 0.0099995, 35.36, -1.54564e-06)
+script = ExtResource("6_ji5vy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mks5b")
+
+[connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]

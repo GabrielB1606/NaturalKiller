@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://ssy4xi0lo7lr"]
+
+[ext_resource type="Material" uid="uid://bsbdxee7lf52g" path="res://materials/floor_material.tres" id="1_dfi4c"]
+[ext_resource type="Material" uid="uid://cx4301xkuyplj" path="res://materials/wall_material.tres" id="2_3vb12"]
+[ext_resource type="PackedScene" uid="uid://8oqjffmibcdy" path="res://scripts/crawler/player/player/Player.tscn" id="3_4637n"]
+[ext_resource type="PackedScene" uid="uid://u6g3xmymh5du" path="res://scenes/crawler/CameraRig.tscn" id="4_bhgq4"]
+[ext_resource type="PackedScene" uid="uid://dtfut1judofka" path="res://scenes/crawler/npcs/Enemy.tscn" id="5_wbs47"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hxxem"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ruk54"]
+sky_material = SubResource("ProceduralSkyMaterial_hxxem")
+
+[sub_resource type="Environment" id="Environment_4xjnm"]
+background_mode = 2
+sky = SubResource("Sky_ruk54")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_nl6f1"]
+vertices = PackedVector3Array(12.75, 0.48, 3.99, 12.75, 0.48, 2.74, 12, 0.48, 2.49, -3.75, 0.48, 3.99, 12, 0.48, -3.76, -3.75, 0.48, -3.76, 13.75, 0.48, 2.49, 17.75, 0.48, 3.99, 17.75, 0.48, -3.76, 13.75, 0.48, -3.76)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 3), PackedInt32Array(1, 6, 0), PackedInt32Array(0, 6, 7), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 7)]
+
+[node name="Crawler" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4xjnm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.799685, -0.516807, 0.305639, 0, 0.509041, 0.860742, -0.60042, -0.688322, 0.407073, 0, 0, 0)
+shadow_enabled = true
+
+[node name="map" type="Node3D" parent="."]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="map"]
+navigation_mesh = SubResource("NavigationMesh_nl6f1")
+
+[node name="floor" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.89, -0.52, 0)
+material_override = ExtResource("1_dfi4c")
+use_collision = true
+size = Vector3(23.78, 1, 10)
+
+[node name="wall_0" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.73, 1.47, 0)
+material_override = ExtResource("2_3vb12")
+use_collision = true
+size = Vector3(0.5, 3, 10)
+
+[node name="wall_4" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.95, 1.47, -1.435)
+material_override = ExtResource("2_3vb12")
+use_collision = true
+size = Vector3(0.5, 3, 7.13)
+
+[node name="wall_1" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 1.46, 0)
+material_override = ExtResource("2_3vb12")
+use_collision = true
+size = Vector3(0.5, 3, 10)
+
+[node name="wall_2" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.895, 1.46, -4.76)
+material_override = ExtResource("2_3vb12")
+use_collision = true
+size = Vector3(22.77, 3, 0.5)
+
+[node name="wall_3" type="CSGBox3D" parent="map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.87, 1.45, 4.78)
+material_override = ExtResource("2_3vb12")
+use_collision = true
+size = Vector3(22.74, 3, 0.5)
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera_rig") instance=ExtResource("3_4637n")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.73, -0.06, 0.77)
+camera_rig = NodePath("../CameraRig")
+
+[node name="CameraRig" parent="." instance=ExtResource("4_bhgq4")]
+
+[node name="Enemy" parent="." instance=ExtResource("5_wbs47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.14, 0.12, -1.51)

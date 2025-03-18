@@ -1,0 +1,172 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsn17icjy6bo8"]
+
+[ext_resource type="Script" path="res://scripts/gui/main_menu.gd" id="1_eaymq"]
+[ext_resource type="Shader" path="res://shaders/neuronal_canvas.gdshader" id="2_gopc6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cin16"]
+shader = ExtResource("2_gopc6")
+shader_parameter/mouse_position = Vector2(0.5, 0.5)
+shader_parameter/wave_color = Color(0.776471, 0.219608, 0.239216, 1)
+shader_parameter/wave_transparency = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o42q"]
+bg_color = Color(0.946251, 0.667545, 0.651612, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.411765)
+shadow_size = 3
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1uj8"]
+bg_color = Color(0.734366, 0.303095, 0.303485, 1)
+skew = Vector2(0.07, 0.045)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.411765)
+shadow_size = 3
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kanxl"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.411765)
+shadow_size = 3
+shadow_offset = Vector2(0, 10)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eaymq")
+
+[node name="Panel" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_cin16")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -251.0
+offset_right = 330.0
+offset_bottom = -130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 71
+text = "Natural Killer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -96.0
+offset_right = 245.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="Infinite Scroller" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
+text = "Infinite Scroller"
+
+[node name="Dungeon Crawler" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
+text = "Dungeon Crawler
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 165
+
+[node name="Exit" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
+text = "Exit
+"
+
+[node name="Options" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
+text = "Options"
+
+[connection signal="pressed" from="VBoxContainer/Infinite Scroller" to="." method="_on_infinite_scroller_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dungeon Crawler" to="." method="_on_dungeon_crawler_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Options" to="." method="_on_options_pressed"]

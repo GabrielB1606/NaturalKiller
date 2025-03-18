@@ -1,0 +1,70 @@
+[gd_scene load_steps=13 format=3 uid="uid://dtfut1judofka"]
+
+[ext_resource type="Script" path="res://scripts/crawler/npcs/enemy.gd" id="1_1cbod"]
+[ext_resource type="PackedScene" uid="uid://cjjueyjd1akmm" path="res://characters/Cell.tscn" id="1_v0ssx"]
+[ext_resource type="Script" path="res://scripts/crawler/player/states/idle.gd" id="2_1kcw7"]
+[ext_resource type="Script" path="res://scripts/crawler/player/states/move.gd" id="3_4gte3"]
+[ext_resource type="Script" path="res://scripts/crawler/player/movement_state_machine.gd" id="3_a6527"]
+[ext_resource type="Script" path="res://scripts/crawler/player/fighting_state_machine.gd" id="6_y24jp"]
+[ext_resource type="Script" path="res://scripts/crawler/player/player/passive.gd" id="7_rsa84"]
+[ext_resource type="Script" path="res://scripts/crawler/player/player/reach.gd" id="8_qfxm5"]
+[ext_resource type="Script" path="res://scripts/crawler/player/player/hold.gd" id="9_qi8ux"]
+[ext_resource type="Script" path="res://scripts/crawler/npcs/captured.gd" id="10_5ovo4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lk243"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6nwih"]
+
+[node name="Enemy" type="CharacterBody3D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_1cbod")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01413, 0)
+shape = SubResource("CapsuleShape3D_lk243")
+
+[node name="Visuals" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Cell" parent="Visuals" instance=ExtResource("1_v0ssx")]
+transform = Transform3D(-0.9, 0, -2.36042e-07, 0, 0.9, 0, 2.36042e-07, 0, -0.9, 0, 0, 0)
+type = 1
+
+[node name="HeadHB" type="Area3D" parent="Visuals"]
+collision_mask = 3
+
+[node name="HeadCollision" type="CollisionShape3D" parent="Visuals/HeadHB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.03217e-08, 1.58, -0.69)
+shape = SubResource("SphereShape3D_6nwih")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 1.3
+
+[node name="MovementStateMachine" type="LimboHSM" parent="."]
+script = ExtResource("3_a6527")
+
+[node name="Idle" type="LimboState" parent="MovementStateMachine"]
+script = ExtResource("2_1kcw7")
+
+[node name="Move" type="LimboState" parent="MovementStateMachine"]
+script = ExtResource("3_4gte3")
+
+[node name="Fall" type="LimboState" parent="MovementStateMachine"]
+
+[node name="Dive" type="LimboState" parent="MovementStateMachine"]
+
+[node name="FightingStateMachine" type="LimboHSM" parent="."]
+script = ExtResource("6_y24jp")
+
+[node name="Passive" type="LimboState" parent="FightingStateMachine"]
+script = ExtResource("7_rsa84")
+
+[node name="Reach" type="LimboState" parent="FightingStateMachine"]
+script = ExtResource("8_qfxm5")
+
+[node name="Hold" type="LimboState" parent="FightingStateMachine"]
+script = ExtResource("9_qi8ux")
+
+[node name="Captured" type="LimboState" parent="FightingStateMachine"]
+script = ExtResource("10_5ovo4")

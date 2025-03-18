@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv64i80vqf6qe"]
+
+[ext_resource type="PackedScene" uid="uid://cd72074han863" path="res://assets/models/test_tube2_culling_fix.glb" id="1_mn7oe"]
+[ext_resource type="Shader" path="res://shaders/running.gdshader" id="2_djpk0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dtvx1"]
+noise_type = 2
+seed = 315
+frequency = 0.0165
+offset = Vector3(22.9, 0, 0)
+fractal_type = 2
+fractal_octaves = 1
+fractal_lacunarity = 4.6
+fractal_gain = 0.0
+fractal_ping_pong_strength = -0.5
+cellular_distance_function = 3
+cellular_return_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xgn8x"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_dtvx1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ydng"]
+render_priority = 0
+shader = ExtResource("2_djpk0")
+shader_parameter/animation_speed = 25.0
+shader_parameter/delta_time = 0.01666
+shader_parameter/albedo_texture = SubResource("NoiseTexture2D_xgn8x")
+
+[node name="test_tube2_culling_fix" instance=ExtResource("1_mn7oe")]
+
+[node name="Grid" parent="." index="0"]
+transform = Transform3D(0.729723, 0, 0, 0, 1.00237, 0, 0, 0, 1.00237, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_2ydng")
