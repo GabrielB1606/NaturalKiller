@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b56qmapxsan13"]
+[gd_scene load_steps=16 format=3 uid="uid://b56qmapxsan13"]
 
 [ext_resource type="Script" path="res://scripts/scroller/hex_game.gd" id="1_nnj7g"]
 [ext_resource type="Shader" path="res://shaders/neuronal.gdshader" id="2_40bpn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/scroller/spawner.gd" id="7_e5ghg"]
 [ext_resource type="PackedScene" uid="uid://cogrysbnmcotx" path="res://scenes/gui/dead_menu.tscn" id="7_laphd"]
 [ext_resource type="PackedScene" uid="uid://cv64i80vqf6qe" path="res://scenes/scroller/test_tube_blender.tscn" id="9_nf202"]
+[ext_resource type="Script" path="res://scenes/scroller/timer.gd" id="9_wkxlo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w7xae"]
 render_priority = 0
@@ -34,6 +35,9 @@ background_mode = 2
 sky = SubResource("Sky_b0av8")
 ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_77rrd"]
+font_size = 36
 
 [node name="HexGame" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -73,15 +77,66 @@ script = ExtResource("7_e5ghg")
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 
-[node name="PauseMenu" parent="." instance=ExtResource("6_jsanv")]
-
-[node name="DeadMenu" parent="." instance=ExtResource("7_laphd")]
-
 [node name="test_tube2_culling_fix" parent="." instance=ExtResource("9_nf202")]
 transform = Transform3D(-4.50613e-07, 0, 7.92986, -10.3088, -3.46625e-07, -3.46625e-07, 4.50613e-07, -7.92986, -1.3021e-14, 0.0099995, 35.36, -1.54564e-06)
 script = ExtResource("6_ji5vy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mks5b")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PauseMenu" parent="Control" instance=ExtResource("6_jsanv")]
+layout_mode = 1
+
+[node name="DeadMenu" parent="Control" instance=ExtResource("7_laphd")]
+layout_mode = 1
+
+[node name="Timer" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_wkxlo")
+
+[node name="Seconds" type="Label" parent="Control/Timer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.5
+offset_top = 27.0
+offset_right = 48.5
+offset_bottom = 66.0
+grow_horizontal = 2
+text = "s"
+label_settings = SubResource("LabelSettings_77rrd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Points" type="Label" parent="Control/Timer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.5
+offset_top = 86.0
+offset_right = 48.5
+offset_bottom = 136.0
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_77rrd")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]

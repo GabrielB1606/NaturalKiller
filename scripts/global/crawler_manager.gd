@@ -19,6 +19,9 @@ var room04_prefab := preload("res://scenes/crawler/rooms/room_04.tscn")
 var rooms:Array[Room]
 const room_gap := 0
 
+func goto_scroller():
+	get_tree().change_scene_to_file("res://scenes/scroller/HexGame.tscn")
+
 func init(root: CrawlerRoot):
 	current_enemies = 0
 	current_scene = root
@@ -32,6 +35,7 @@ func init(root: CrawlerRoot):
 	current_map_length = rooms[0].length + rooms[1].length - room_gap
 	rooms[0].id = 0
 	rooms[1].id = 1
+	rooms[0].set_NPCs_visible(true)
 	rooms[1].set_door_visible(false)
 
 func open_room(id: int):

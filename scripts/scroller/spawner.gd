@@ -4,6 +4,7 @@ var obstacle = preload("res://scenes/scroller/Obstacle.tscn")
 var coin = preload("res://scenes/scroller/Coin.tscn")
 @onready var spawn_timer: Timer = $SpawnTimer
 const rotation_speed := 5.0
+@onready var points_label: Label = $"../Control/Timer/Points"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +28,7 @@ func _on_spawn_timer_timeout() -> void:
 		obj.dead_menu = $"../DeadMenu"
 	else:
 		obj = coin.instantiate()
+		obj.points_label = points_label
 	
 	#obs.position.y += 3.5
 	var r := 3.5

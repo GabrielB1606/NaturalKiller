@@ -1,6 +1,7 @@
 class_name Room extends Node3D
 
 @onready var door: CSGBox3D = $NavigationRegion3D/walls/door
+@onready var npcs: Node3D = $NPCs
 
 var width := 10
 var length := 10
@@ -15,17 +16,23 @@ func set_door_visible(value: bool):
 	if door != null:
 		door.visible = value
 
+func set_NPCs_visible(value: bool):
+	if npcs != null:
+		npcs.visible = value
+
 func _ready() -> void:
 	locked = false
 	spawners_active = false
 	entered = false
 	enemies_left = 2
 	set_door_visible(true)
+	set_NPCs_visible(false)
 
 func check_complete():
 	if CrawlerManager.current_enemies <= 0 && enemies_left <= 0:
 		locked = false
 		#set_door_visible(false)
+		set_NPCs_visible(true)
 		spawners_active = false
 		CrawlerManager.open_room(id+1)
 		CrawlerManager.clear_room(id-2)

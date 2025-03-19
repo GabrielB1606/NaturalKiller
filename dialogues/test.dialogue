@@ -1,0 +1,9 @@
+~ start
+Célula Dendrítica: [[Hola]], ¿Necesitas que llame más linfocitos T?. 
+- Si
+	Célula Dendrítica: [[Ok!|¡En camino!]]
+	do CrawlerManager.goto_scroller()
+	=> END
+- [[No|Olvídalo]]
+	Célula Dendrítica: Ok.
+	=> END

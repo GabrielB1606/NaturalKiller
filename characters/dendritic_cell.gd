@@ -1,0 +1,21 @@
+class_name DendriticCell extends Node3D
+
+const test_dialogue = preload("res://dialogues/test.dialogue")
+var player_in := false
+
+func interact():
+	DialogueManager.show_example_dialogue_balloon(test_dialogue, "start")
+
+
+func _on_interaction_area_body_entered(body) -> void:
+	if body is PlayerCharacter:
+		player_in = true
+	
+
+func _on_interaction_area_body_exited(body) -> void:
+	if body is PlayerCharacter:
+		player_in = false
+
+func _input(event: InputEvent) -> void:
+	if CrawlerManager.current_enemies <= 0 && player_in && event.is_action_pressed("interact"):
+		interact()

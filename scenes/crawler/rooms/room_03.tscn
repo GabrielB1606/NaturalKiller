@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dd72kxool6jie"]
+[gd_scene load_steps=10 format=3 uid="uid://dd72kxool6jie"]
 
 [ext_resource type="Script" path="res://scenes/crawler/rooms/room_03.gd" id="1_7n2i4"]
 [ext_resource type="Material" uid="uid://bsbdxee7lf52g" path="res://materials/floor_material.tres" id="1_wbc8f"]
 [ext_resource type="Material" uid="uid://cx4301xkuyplj" path="res://materials/wall_material.tres" id="2_iya1q"]
 [ext_resource type="Script" path="res://scripts/crawler/npcs/spawner.gd" id="4_7vt0j"]
+[ext_resource type="Script" path="res://characters/dendritic_cell.gd" id="5_jjmrx"]
+[ext_resource type="PackedScene" uid="uid://cjjueyjd1akmm" path="res://characters/Cell.tscn" id="6_bjkgo"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_nl6f1"]
 vertices = PackedVector3Array(-4.66584, 0.5, -8.098, -4.53584, 0.5, -11.348, -7.52584, 0.5, -11.348, -7.52584, 0.5, -8.098, 0.40416, 0.5, -4.328, 0.40416, 0.5, -3.938, 3.26416, 0.5, -3.938, -3.88584, 0.5, -8.098, 0.0141602, 0.5, -4.718, 3.26416, 0.5, -7.578, 3.65416, 0.5, -7.968, 4.82416, 0.5, -8.098, 4.69416, 0.5, -11.348, -3.49584, 0.5, -7.708, -3.49584, 0.5, -4.718, 7.55416, 0.5, -8.098, 7.55416, 0.5, -11.348, -0.11584, 0.5, -3.028, 0.40416, 0.5, -0.688, 0.79416, 0.5, -0.688, 0.40416, 0.5, -3.418, 3.26416, 0.5, 0.742001, -0.24584, 0.5, -0.167999, -3.49584, 0.5, 0.352, -0.37584, 0.5, 0.352, -3.49584, 0.5, -3.028, 0.0141602, 0.5, 1.002, 1.44416, 0.5, 6.592, 3.26416, 0.5, 6.592, 3.26416, 0.5, 2.692, -3.62584, 0.5, 7.762, 1.05416, 0.5, 7.762, 1.05416, 0.5, 6.982)
@@ -12,6 +14,8 @@ cell_size = 0.13
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4bt5b"]
 size = Vector3(2.72, 1.86, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3vlbe"]
 
 [node name="room03" type="Node3D"]
 script = ExtResource("1_7n2i4")
@@ -143,5 +147,25 @@ room = NodePath("..")
 
 [node name="Timer" type="Timer" parent="Spawner"]
 
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="DendriticCell" type="Node3D" parent="NPCs"]
+transform = Transform3D(-0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, -0.642788, 4.48, -0.0299998, -17.67)
+script = ExtResource("5_jjmrx")
+
+[node name="Visuals" type="Node3D" parent="NPCs/DendriticCell"]
+
+[node name="Cell" parent="NPCs/DendriticCell/Visuals" instance=ExtResource("6_bjkgo")]
+transform = Transform3D(-0.81, 0, -7.08124e-08, 0, 0.81, 0, 7.08124e-08, 0, -0.81, 0, 0, 0)
+type = 2
+
+[node name="InteractionArea" type="Area3D" parent="NPCs/DendriticCell"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/DendriticCell/InteractionArea"]
+transform = Transform3D(2.87121, 0, 5.96046e-08, 0, 2.87121, 0, -5.96046e-08, 0, 2.87121, 0, 0.922464, 0)
+shape = SubResource("CylinderShape3D_3vlbe")
+
 [connection signal="area_entered" from="EnterArea" to="." method="_on_enter_area_area_entered"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
+[connection signal="body_entered" from="NPCs/DendriticCell/InteractionArea" to="NPCs/DendriticCell" method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="NPCs/DendriticCell/InteractionArea" to="NPCs/DendriticCell" method="_on_interaction_area_body_exited"]
