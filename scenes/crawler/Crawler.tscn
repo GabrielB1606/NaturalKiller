@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ssy4xi0lo7lr"]
+[gd_scene load_steps=12 format=3 uid="uid://ssy4xi0lo7lr"]
 
 [ext_resource type="Script" path="res://scripts/crawler/crawler.gd" id="1_lvomn"]
 [ext_resource type="PackedScene" uid="uid://8oqjffmibcdy" path="res://scripts/crawler/player/player/Player.tscn" id="3_4637n"]
 [ext_resource type="PackedScene" uid="uid://u6g3xmymh5du" path="res://scenes/crawler/CameraRig.tscn" id="4_bhgq4"]
+[ext_resource type="Texture2D" uid="uid://do2oa4q1crgr0" path="res://assets/textures/ui/hb_bg.png" id="5_8ti7b"]
 [ext_resource type="Script" path="res://scripts/crawler/timer.gd" id="6_rxowc"]
+[ext_resource type="Texture2D" uid="uid://bwwssbyu7ji82" path="res://assets/textures/ui/hb_fg.png" id="6_tjnxu"]
 [ext_resource type="PackedScene" uid="uid://chuh01o644lua" path="res://scenes/gui/pause_menu.tscn" id="7_3ljse"]
 [ext_resource type="PackedScene" uid="uid://cogrysbnmcotx" path="res://scenes/gui/dead_menu.tscn" id="8_flo80"]
 
@@ -57,6 +59,7 @@ grow_vertical = 2
 script = ExtResource("6_rxowc")
 
 [node name="Seconds" type="Label" parent="Control/Timer"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -73,10 +76,29 @@ text = "s"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ProgressBar" type="TextureProgressBar" parent="Control/Timer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -253.0
+offset_top = -116.0
+offset_right = 253.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+nine_patch_stretch = true
+texture_under = ExtResource("5_8ti7b")
+texture_progress = ExtResource("6_tjnxu")
+
 [node name="PauseMenu" parent="Control" instance=ExtResource("7_3ljse")]
+visible = false
 layout_mode = 1
 
 [node name="DeadMenu" parent="Control" instance=ExtResource("8_flo80")]
+visible = false
 layout_mode = 1
 
 [node name="Map" type="Node3D" parent="."]

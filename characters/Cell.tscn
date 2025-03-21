@@ -340,7 +340,7 @@ graph_offset = Vector2(-39, 61)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_oddjn"]
 resource_local_to_scene = true
-graph_offset = Vector2(-31.9091, -62)
+graph_offset = Vector2(-81.8678, -47.3223)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_byj2r")
 nodes/OneShot/position = Vector2(700, 200)
 nodes/head/node = SubResource("AnimationNodeAnimation_1qx0d")
@@ -720,7 +720,7 @@ bones/0/name = "mixamorig_Hips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -0.0335422, -76.1441)
 bones/0/enabled = true
-bones/0/position = Vector3(-0.00257171, 0.689421, 0.00121307)
+bones/0/position = Vector3(-0.000121669, 0.689779, 0.000770569)
 bones/0/rotation = Quaternion(0.0729997, -0.0505149, -0.0845058, 0.992461)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "mixamorig_Spine"
@@ -756,7 +756,7 @@ bones/5/parent = 4
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27.23, -0.0202599)
 bones/5/enabled = true
 bones/5/position = Vector3(-1.06989e-05, 27.23, -0.0202643)
-bones/5/rotation = Quaternion(-0.0556812, -0.117079, 0.0163203, 0.991426)
+bones/5/rotation = Quaternion(-0.0633722, -0.0770623, -0.057948, 0.993321)
 bones/5/scale = Vector3(0.7, 0.7, 0.7)
 bones/6/name = "mixamorig_HeadTop_End"
 bones/6/parent = 5

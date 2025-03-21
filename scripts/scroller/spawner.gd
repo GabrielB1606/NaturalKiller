@@ -25,10 +25,10 @@ func _on_spawn_timer_timeout() -> void:
 	
 	if obj_prob <= 0.7:
 		obj = obstacle.instantiate()
-		obj.dead_menu = $"../DeadMenu"
 	else:
 		obj = coin.instantiate()
-		obj.points_label = points_label
+		
+	obj.points_label = points_label
 	
 	#obs.position.y += 3.5
 	var r := 3.5

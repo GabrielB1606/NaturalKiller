@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b56qmapxsan13"]
+[gd_scene load_steps=18 format=3 uid="uid://b56qmapxsan13"]
 
 [ext_resource type="Script" path="res://scripts/scroller/hex_game.gd" id="1_nnj7g"]
 [ext_resource type="Shader" path="res://shaders/neuronal.gdshader" id="2_40bpn"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cogrysbnmcotx" path="res://scenes/gui/dead_menu.tscn" id="7_laphd"]
 [ext_resource type="PackedScene" uid="uid://cv64i80vqf6qe" path="res://scenes/scroller/test_tube_blender.tscn" id="9_nf202"]
 [ext_resource type="Script" path="res://scenes/scroller/timer.gd" id="9_wkxlo"]
+[ext_resource type="Texture2D" uid="uid://crbdga7cop4nt" path="res://assets/textures/ui/pb_bg.png" id="10_mv6n5"]
+[ext_resource type="Texture2D" uid="uid://desta6cv3tjtq" path="res://assets/textures/ui/pb_fg.png" id="11_4heej"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w7xae"]
 render_priority = 0
@@ -95,9 +97,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PauseMenu" parent="Control" instance=ExtResource("6_jsanv")]
+visible = false
 layout_mode = 1
 
 [node name="DeadMenu" parent="Control" instance=ExtResource("7_laphd")]
+visible = false
 layout_mode = 1
 
 [node name="Timer" type="Control" parent="Control"]
@@ -110,6 +114,7 @@ grow_vertical = 2
 script = ExtResource("9_wkxlo")
 
 [node name="Seconds" type="Label" parent="Control/Timer"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -130,13 +135,29 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -48.5
-offset_top = 86.0
+offset_top = 96.0
 offset_right = 48.5
-offset_bottom = 136.0
+offset_bottom = 146.0
 grow_horizontal = 2
 text = "0"
 label_settings = SubResource("LabelSettings_77rrd")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ProgressBar" type="TextureProgressBar" parent="Control/Timer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -232.0
+offset_top = 17.0
+offset_right = 231.0
+offset_bottom = 111.0
+grow_horizontal = 2
+step = 0.01
+rounded = true
+nine_patch_stretch = true
+texture_under = ExtResource("10_mv6n5")
+texture_progress = ExtResource("11_4heej")
 
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]

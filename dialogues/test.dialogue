@@ -1,5 +1,6 @@
 ~ start
-Célula Dendrítica: [[Hola]], ¿Necesitas que llame más linfocitos T?. 
+Célula Dendrítica: [[Hola]], soy una célula dendrítica. Si me ayudas a conseguir una muestra de una amenaza, puedo buscar linfocitos T. 
+Célula Dendrítica: ¿Necesitas que llame más linfocitos T?. 
 - Si
 	Célula Dendrítica: [[Ok!|¡En camino!]]
 	do CrawlerManager.goto_scroller()
