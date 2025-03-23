@@ -18,6 +18,10 @@ extends CharacterBody3D
 
 var lifetime:float = 0.0
 
+func set_cell_type(type):
+	cell.type = type
+	cell.update_type()
+
 func set_body_held(body: CharacterBody3D) -> void:
 	body_held = body
 
@@ -55,7 +59,7 @@ func _ready() -> void:
 						if body_held == b:
 							body_held = null
 							fight_state_machine.dispatch("to_idle")
-							stats.current_health += 5
+							stats.current_health = max(stats.current_health+5, stats.base_health)
 					hit = true
 			if hit:
 				CrawlerManager.camera_rig.set_trauma(0.75)
@@ -64,6 +68,9 @@ func attack():
 	cell.trigger_attack()
 	
 func _input(event: InputEvent) -> void:
+	if CrawlerManager.is_locked():
+		return
+	
 	var mov_input := Input.get_vector("left", "right", "forward", "backward")
 	var movement_vector := (transform.basis * Vector3(mov_input.x, 0, mov_input.y)).normalized()
 	
@@ -94,6 +101,6 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if CrawlerManager.current_enemies > 0:
 		lifetime += delta
-		stats.current_health -= delta
+		stats.current_health -= delta*CrawlerManager.current_room.stats.time_mult
 	if stats.current_health <= 0:
 		dead_menu.handleDeath()

@@ -3,7 +3,7 @@ extends Control
 @onready var s_lbl: Label = $Seconds
 @onready var ms_lbl: Label = $Milliseconds
 @onready var player: PlayerCharacter = %Player
-@onready var progress_bar: TextureProgressBar = $ProgressBar
+@onready var progress_bar: TextureProgressBar = $Apoptosis
 
 var time:float = 0.0
 

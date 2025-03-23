@@ -5,8 +5,12 @@ var enemyPrefab = preload("res://scenes/crawler/npcs/Enemy.tscn")
 @onready var timer: Timer = $Timer
 @export var room:Room
 
+var freq :float = 1.5
+var sparse :float = 1
+
 func _ready() -> void:
-	timer.wait_time = randf_range(1, 2)
+	freq = CrawlerManager.room_stats.spwn_freq
+	timer.wait_time = randf_range(freq - sparse, freq + sparse)
 	timer.start()
 
 func _on_timer_timeout() -> void:
@@ -15,6 +19,8 @@ func _on_timer_timeout() -> void:
 		add_child(obj)
 		obj.room = room
 		CrawlerManager.current_enemies += 1
-		room.enemies_left -= 1
-	timer.wait_time = randf_range(1, 2)
+		room.stats.enemies_qty -= 1
+		
+	timer.wait_time = randf_range(freq - sparse, freq + sparse)
 	timer.start()
+	

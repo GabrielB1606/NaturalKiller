@@ -32,6 +32,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 
 
 [node name="Cell" parent="Visuals" instance=ExtResource("2_ylj5o")]
 transform = Transform3D(-0.81, 0, -7.08124e-08, 0, 0.81, 0, 7.08124e-08, 0, -0.81, 0, 0, 0)
+type = 1
 
 [node name="HoldArea" type="Area3D" parent="Visuals"]
 transform = Transform3D(1.74846e-08, 0.4, -3.49691e-08, 0.4, -1.74846e-08, 0, -1.52855e-15, -3.49691e-08, -0.4, 0.02, 1.26, -0.66)
@@ -68,7 +69,7 @@ script = ExtResource("4_qm73h")
 [node name="Dive" type="LimboState" parent="MovementStateMachine"]
 
 [node name="CameraPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.499999, 0.866026, 0, -0.866026, 0.499999, -0.0100001, 6.922, 4.1858)
+transform = Transform3D(1, 0, 0, 0, 0.499999, 0.866026, 0, -0.866026, 0.499999, -0.0100001, 7.662, 3.0358)
 script = ExtResource("5_eh0yg")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]

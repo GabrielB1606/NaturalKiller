@@ -19,6 +19,8 @@ func set_trauma(value: float = 1.0) -> void:
 	shake_props.trauma = value
 
 func shake() -> void:
+	if CrawlerManager.is_locked():
+		return
 	var amount = pow(shake_props.trauma, shake_props.trauma_power)
 	var rot = shake_props.max_roll * amount * randf_range(-1, 1)
 	var offset_x = shake_props.max_offset.x * amount * randf_range(-1, 1)
@@ -47,4 +49,12 @@ func _process(delta: float) -> void:
 	if shake_props.trauma > 0.0:
 		shake_props.trauma = max(0, shake_props.trauma - (shake_props.decay*delta))
 		shake()
-		
+
+func disable():
+	$Base/backgroundViewportContainer.visible = false
+	$Base/foregroundViewportContainer.visible = false
+
+func make_current():
+	$Base/backgroundViewportContainer.visible = true
+	$Base/foregroundViewportContainer.visible = true
+	$Base.make_current()

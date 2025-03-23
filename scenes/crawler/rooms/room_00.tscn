@@ -36,22 +36,22 @@ material_override = ExtResource("2_ltfpd")
 use_collision = true
 
 [node name="wall_0" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.22, 1.45, -0.464999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.51, 1.45, 8.37)
 material_override = ExtResource("2_ltfpd")
 use_collision = true
-size = Vector3(0.5, 3, 14.89)
+size = Vector3(15.08, 3, 32.56)
 
 [node name="wall_1" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27, 1.45, -0.34)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.325, 1.45, 8.61)
 material_override = ExtResource("2_ltfpd")
 use_collision = true
-size = Vector3(0.5, 3, 15.24)
+size = Vector3(12.61, 3, 33.14)
 
 [node name="wall_3" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00499916, 1.45, 7.22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00499916, 1.45, 15.925)
 material_override = ExtResource("2_ltfpd")
 use_collision = true
-size = Vector3(18.85, 3, 0.5)
+size = Vector3(18.85, 3, 17.91)
 
 [node name="ExitArea" type="Area3D" parent="."]
 transform = Transform3D(13, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, 1.34, -14.56)
@@ -59,6 +59,21 @@ transform = Transform3D(13, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, 1.34, -14.56)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ExitArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.900002)
 shape = SubResource("BoxShape3D_4bt5b")
+
+[node name="Cell2" parent="." instance=ExtResource("4_hibwj")]
+transform = Transform3D(0.761151, 0, 0.277037, 0, 0.81, 0, -0.277037, 0, 0.761151, 0.659999, -0.0299998, -11.97)
+
+[node name="Cell4" parent="." instance=ExtResource("4_hibwj")]
+transform = Transform3D(0.761151, 0, 0.277037, 0, 0.81, 0, -0.277037, 0, 0.761151, 2.23, -0.0299998, -11.97)
+type = 1
+
+[node name="Cell3" parent="." instance=ExtResource("4_hibwj")]
+transform = Transform3D(0.761151, 0, 0.277037, 0, 0.81, 0, -0.277037, 0, 0.761151, -0.800001, -0.0299998, -11.97)
+type = 2
+
+[node name="Cell5" parent="." instance=ExtResource("4_hibwj")]
+transform = Transform3D(0.761151, 0, 0.277037, 0, 0.81, 0, -0.277037, 0, 0.761151, 3.77, -0.0299998, -11.97)
+type = 3
 
 [node name="NPCs" type="Node3D" parent="."]
 
@@ -70,7 +85,7 @@ script = ExtResource("4_38ohx")
 
 [node name="Cell" parent="NPCs/DendriticCell/Visuals" instance=ExtResource("4_hibwj")]
 transform = Transform3D(-0.81, 0, -7.08124e-08, 0, 0.81, 0, 7.08124e-08, 0, -0.81, 0, 0, 0)
-type = 2
+type = 3
 
 [node name="InteractionArea" type="Area3D" parent="NPCs/DendriticCell"]
 

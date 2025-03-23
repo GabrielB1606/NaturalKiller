@@ -15,4 +15,4 @@ func _process(delta: float) -> void:
 	progress_bar.value = value
 	
 	if time >= total:
-		get_tree().change_scene_to_file("res://scenes/crawler/Crawler.tscn")
+		CrawlerManager.goto_crawler()

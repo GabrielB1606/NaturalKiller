@@ -8,15 +8,17 @@ func _ready() -> void:
 
 func handleDeath():
 	dead_menu.show()
-	get_tree().paused = true
+	CrawlerManager.player.visible = false
+	#get_tree().paused = true
 
 func _on_exit_pressed() -> void:
 	dead_menu.hide()
-	get_tree().paused = false
+	#get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/gui/main_menu.tscn")
 
 
 func _on_restart_pressed() -> void:
 	dead_menu.hide()
-	get_tree().paused = false
+	CrawlerManager.player.visible = true
+	#get_tree().paused = false
 	get_tree().reload_current_scene()

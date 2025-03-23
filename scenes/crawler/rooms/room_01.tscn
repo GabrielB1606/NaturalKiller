@@ -29,10 +29,10 @@ material_override = ExtResource("2_aqlpr")
 use_collision = true
 
 [node name="wall_0" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.18, 1.49, -0.215)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.97, 1.49, 0.0549998)
 material_override = ExtResource("2_aqlpr")
 use_collision = true
-size = Vector3(0.5, 3, 14.69)
+size = Vector3(22.08, 3, 15.23)
 
 [node name="wall_3" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, -4.12944, 1.45, 1.44296)
@@ -47,10 +47,10 @@ use_collision = true
 size = Vector3(0.5, 3, 7.05)
 
 [node name="wall_1" type="CSGBox3D" parent="NavigationRegion3D/walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27, 1.45, -0.0799999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.495, 1.45, 0.12)
 material_override = ExtResource("2_aqlpr")
 use_collision = true
-size = Vector3(0.5, 3, 14.72)
+size = Vector3(16.95, 3, 15.12)
 
 [node name="wall_5" type="CSGBox3D" parent="NavigationRegion3D/walls"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 8.325, 1.45, 7.39)
@@ -126,7 +126,7 @@ script = ExtResource("5_70yhi")
 
 [node name="Cell" parent="NPCs/DendriticCell/Visuals" instance=ExtResource("6_apt26")]
 transform = Transform3D(-0.81, 0, -7.08124e-08, 0, 0.81, 0, 7.08124e-08, 0, -0.81, 0, 0, 0)
-type = 2
+type = 3
 
 [node name="InteractionArea" type="Area3D" parent="NPCs/DendriticCell"]
 

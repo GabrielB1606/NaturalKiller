@@ -9,7 +9,12 @@ extends CharacterBody3D
 @onready var cell: Cell = $Visuals/Cell
 @onready var head_hb: Area3D = $Visuals/HeadHB
 
-@export var stats:CharacterStats
+@export var stats:CharacterStats = CharacterStats.create(
+	randf_range(CrawlerManager.room_stats.enemies_mv - 0.5, CrawlerManager.room_stats.enemies_mv + 0.5 ), 
+	4.5, 
+	randf_range(CrawlerManager.room_stats.enemies_hp - 25, CrawlerManager.room_stats.enemies_hp + 25 ), 
+	randf_range(CrawlerManager.room_stats.enemies_ad - 10, CrawlerManager.room_stats.enemies_ad + 20 )
+)
 
 const JUMP_VELOCITY = 4.5
 var movement_input := Vector3.ZERO
@@ -29,7 +34,6 @@ func receive_hit(source: PlayerCharacter) -> float :
 
 func _ready() -> void:
 	player = CrawlerManager.player
-	stats = CharacterStats.create(3.0, 4.5, 100.0, 20.0)
 	mov_state_machine.init(self)
 	fight_state_machine.init(self)
 	cell.onAttack = func attack() -> void:
@@ -66,8 +70,9 @@ func _physics_process(delta: float) -> void:
 		movement_input = velocity
 		rotation.y = lerp_angle( rotation.y, atan2(velocity.x, velocity.z), delta*10.0 )
 	else:
-		cell.trigger_attack()
-		fight_state_machine.dispatch("to_hold")
+		if !CrawlerManager.is_locked():
+			cell.trigger_attack()
+		#fight_state_machine.dispatch("to_hold")
 		
 	mov_state_machine.get_active_state().onPhysicsProcess(delta)
 	fight_state_machine.get_active_state().onPhysicsProcess(delta)

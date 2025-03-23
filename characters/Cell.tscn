@@ -285,6 +285,8 @@ blend_point_1/pos = 1.0
 blend_point_2/node = SubResource("AnimationNodeAnimation_0sdk2")
 blend_point_2/pos = -1.0
 
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_u4d6h"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ssa0x"]
 animation = &"full_body_lib/agony"
 
@@ -338,23 +340,29 @@ states/run/position = Vector2(662, 304)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_otuwm"), "idle", "reaching", SubResource("AnimationNodeStateMachineTransition_1queh"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_xisxa"), "run", "reaching", SubResource("AnimationNodeStateMachineTransition_7o6gs"), "reaching", "run", SubResource("AnimationNodeStateMachineTransition_cb3d4"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_adf1a"), "reaching", "idle", SubResource("AnimationNodeStateMachineTransition_k0p51"), "idle", "agony", SubResource("AnimationNodeStateMachineTransition_82dnu"), "agony", "idle", SubResource("AnimationNodeStateMachineTransition_dcka7"), "agony", "run", SubResource("AnimationNodeStateMachineTransition_8xoaa"), "run", "agony", SubResource("AnimationNodeStateMachineTransition_2n5y8"), "agony", "reaching", SubResource("AnimationNodeStateMachineTransition_7emod"), "reaching", "agony", SubResource("AnimationNodeStateMachineTransition_2ubh0")]
 graph_offset = Vector2(-39, 61)
 
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_71w0d"]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_oddjn"]
 resource_local_to_scene = true
-graph_offset = Vector2(-81.8678, -47.3223)
+graph_offset = Vector2(-152.578, -13.9747)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_byj2r")
-nodes/OneShot/position = Vector2(700, 200)
+nodes/OneShot/position = Vector2(900, 180)
 nodes/head/node = SubResource("AnimationNodeAnimation_1qx0d")
 nodes/head/position = Vector2(260, 420)
 nodes/head_speed/node = SubResource("AnimationNodeTimeScale_1hvuk")
 nodes/head_speed/position = Vector2(500, 400)
 nodes/locomotion/node = SubResource("AnimationNodeBlend2_e10ve")
-nodes/locomotion/position = Vector2(440, 100)
+nodes/locomotion/position = Vector2(500, 120)
 nodes/lower_body/node = SubResource("AnimationNodeBlendSpace1D_16dcr")
-nodes/lower_body/position = Vector2(160, 0)
-nodes/output/position = Vector2(880, 120)
+nodes/lower_body/position = Vector2(60, 20)
+nodes/lower_seek/node = SubResource("AnimationNodeTimeSeek_u4d6h")
+nodes/lower_seek/position = Vector2(300, 20)
+nodes/output/position = Vector2(1100, 180)
 nodes/upper_body/node = SubResource("AnimationNodeStateMachine_424ou")
-nodes/upper_body/position = Vector2(160, 220)
-node_connections = [&"OneShot", 0, &"locomotion", &"OneShot", 1, &"head_speed", &"head_speed", 0, &"head", &"locomotion", 0, &"lower_body", &"locomotion", 1, &"upper_body", &"output", 0, &"OneShot"]
+nodes/upper_body/position = Vector2(80, 220)
+nodes/upper_seek/node = SubResource("AnimationNodeTimeSeek_71w0d")
+nodes/upper_seek/position = Vector2(300, 200)
+node_connections = [&"OneShot", 0, &"locomotion", &"OneShot", 1, &"head_speed", &"head_speed", 0, &"head", &"locomotion", 0, &"lower_seek", &"locomotion", 1, &"upper_seek", &"lower_seek", 0, &"lower_body", &"output", 0, &"OneShot", &"upper_seek", 0, &"upper_body"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bjue"]
 albedo_color = Color(0, 0.721569, 0.870588, 1)
@@ -363,12 +371,6 @@ albedo_color = Color(0, 0.721569, 0.870588, 1)
 material = SubResource("StandardMaterial3D_4bjue")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sbb10"]
-render_priority = 0
-shader = ExtResource("5_thluv")
-shader_parameter/outline_color = null
-shader_parameter/outline_width = 1.5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7qtg"]
 render_priority = 0
 shader = ExtResource("5_thluv")
 shader_parameter/outline_color = null
@@ -522,12 +524,6 @@ bind/40/name = &"mixamorig_RightToe_End"
 bind/40/bone = -1
 bind/40/pose = Transform3D(-99.1432, -7.72451, -10.5336, -10.72, 2.03923, 99.4028, -7.46358, 99.6803, -2.84982, -10.8701, -21.4157, -8.90778)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qeij8"]
-render_priority = -1
-shader = ExtResource("5_thluv")
-shader_parameter/outline_color = null
-shader_parameter/outline_width = 1.5
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cal5"]
 resource_name = "Material.001"
 transparency = 4
@@ -680,6 +676,7 @@ blend_shape_mode = 0
 
 [node name="Cell" type="Node3D"]
 script = ExtResource("1_j5xak")
+type = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -700,6 +697,8 @@ parameters/OneShot/request = 0
 parameters/head_speed/scale = 1.5
 parameters/locomotion/blend_amount = 1.0
 parameters/lower_body/blend_position = 0.0
+parameters/lower_seek/seek_request = -1.0
+parameters/upper_seek/seek_request = -1.0
 
 [node name="HoldIndicator" type="Node3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.42, 1.35, 0.67)
@@ -720,7 +719,7 @@ bones/0/name = "mixamorig_Hips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, -0.0335422, -76.1441)
 bones/0/enabled = true
-bones/0/position = Vector3(-0.000121669, 0.689779, 0.000770569)
+bones/0/position = Vector3(-0.00955335, 0.692683, 0.00967407)
 bones/0/rotation = Quaternion(0.0729997, -0.0505149, -0.0845058, 0.992461)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "mixamorig_Spine"
@@ -756,7 +755,7 @@ bones/5/parent = 4
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27.23, -0.0202599)
 bones/5/enabled = true
 bones/5/position = Vector3(-1.06989e-05, 27.23, -0.0202643)
-bones/5/rotation = Quaternion(-0.0633722, -0.0770623, -0.057948, 0.993321)
+bones/5/rotation = Quaternion(-0.140806, -0.113496, -0.119214, 0.976258)
 bones/5/scale = Vector3(0.7, 0.7, 0.7)
 bones/6/name = "mixamorig_HeadTop_End"
 bones/6/parent = 5
@@ -1010,14 +1009,12 @@ cast_shadow = 0
 
 [node name="feet_002" type="MeshInstance3D" parent="Skeleton3D/mesh"]
 transform = Transform3D(1, 7.45058e-09, 7.45058e-09, -3.72529e-09, 1, 2.98023e-08, 7.45058e-09, 0, 1, 0, 0, 0)
-material_overlay = SubResource("ShaderMaterial_q7qtg")
 mesh = SubResource("ArrayMesh_3i60s")
 skin = SubResource("Skin_pxiw4")
 skeleton = NodePath("../..")
 
 [node name="head_tcell_ext_002" type="MeshInstance3D" parent="Skeleton3D/mesh"]
 transform = Transform3D(1, 7.45058e-09, 7.45058e-09, -3.72529e-09, 1, 2.98023e-08, 7.45058e-09, 0, 1, 0, 0, 0)
-material_overlay = SubResource("ShaderMaterial_qeij8")
 transparency = 0.13
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_vw1oj")

@@ -66,9 +66,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -330.0
-offset_top = -251.0
+offset_top = -196.0
 offset_right = 330.0
-offset_bottom = -130.0
+offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -88,14 +88,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -244.0
-offset_top = -96.0
+offset_top = -36.0
 offset_right = 245.0
-offset_bottom = 225.0
+offset_bottom = 165.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 40
 
 [node name="Infinite Scroller" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -125,8 +126,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
-text = "Dungeon Crawler
-"
+text = "Jugar"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -147,8 +147,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
-text = "Exit
-"
+text = "Salir"
 
 [node name="Options" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -164,7 +163,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
-text = "Options"
+text = "Opciones"
 
 [connection signal="pressed" from="VBoxContainer/Infinite Scroller" to="." method="_on_infinite_scroller_pressed"]
 [connection signal="pressed" from="VBoxContainer/Dungeon Crawler" to="." method="_on_dungeon_crawler_pressed"]

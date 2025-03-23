@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ssy4xi0lo7lr"]
+[gd_scene load_steps=16 format=3 uid="uid://ssy4xi0lo7lr"]
 
 [ext_resource type="Script" path="res://scripts/crawler/crawler.gd" id="1_lvomn"]
 [ext_resource type="PackedScene" uid="uid://8oqjffmibcdy" path="res://scripts/crawler/player/player/Player.tscn" id="3_4637n"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bwwssbyu7ji82" path="res://assets/textures/ui/hb_fg.png" id="6_tjnxu"]
 [ext_resource type="PackedScene" uid="uid://chuh01o644lua" path="res://scenes/gui/pause_menu.tscn" id="7_3ljse"]
 [ext_resource type="PackedScene" uid="uid://cogrysbnmcotx" path="res://scenes/gui/dead_menu.tscn" id="8_flo80"]
+[ext_resource type="Texture2D" uid="uid://yeewjpaids8k" path="res://assets/textures/ui/lifeline.png" id="9_ip3g2"]
+[ext_resource type="VideoStream" path="res://assets/videos/intro.ogv" id="10_0mlxi"]
+[ext_resource type="Script" path="res://scripts/crawler/video_manager.gd" id="10_wf0ds"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_75y1u"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -26,6 +29,9 @@ fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(1, 0.648568, 0.594259, 1)
 fog_density = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ob31g"]
+font_size = 28
 
 [node name="Crawler" type="Node3D"]
 script = ExtResource("1_lvomn")
@@ -48,6 +54,59 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Paciente" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -74.0
+offset_right = 72.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="salud" type="Label" parent="Control/Paciente"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -492.0
+offset_top = -162.0
+offset_right = -320.0
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0%"
+label_settings = SubResource("LabelSettings_ob31g")
+
+[node name="evento" type="Label" parent="Control/Paciente"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -503.0
+offset_top = -112.0
+offset_right = -218.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "--"
+label_settings = SubResource("LabelSettings_ob31g")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/Paciente"]
+layout_mode = 0
+offset_left = -573.0
+offset_top = -98.0
+offset_right = -195.0
+offset_bottom = 8.0
+texture = ExtResource("9_ip3g2")
 
 [node name="Timer" type="Control" parent="Control"]
 layout_mode = 1
@@ -76,7 +135,7 @@ text = "s"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="TextureProgressBar" parent="Control/Timer"]
+[node name="Apoptosis" type="TextureProgressBar" parent="Control/Timer"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -84,14 +143,28 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -253.0
-offset_top = -116.0
+offset_top = -135.0
 offset_right = 253.0
-offset_bottom = -75.0
+offset_bottom = -94.0
 grow_horizontal = 2
 grow_vertical = 0
+step = 0.01
+rounded = true
 nine_patch_stretch = true
 texture_under = ExtResource("5_8ti7b")
 texture_progress = ExtResource("6_tjnxu")
+
+[node name="VideoManager" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_wf0ds")
+
+[node name="Player" type="VideoStreamPlayer" parent="Control/VideoManager"]
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1088.0
+stream = ExtResource("10_0mlxi")
 
 [node name="PauseMenu" parent="Control" instance=ExtResource("7_3ljse")]
 visible = false
@@ -102,3 +175,5 @@ visible = false
 layout_mode = 1
 
 [node name="Map" type="Node3D" parent="."]
+
+[connection signal="finished" from="Control/VideoManager/Player" to="Control/VideoManager" method="_on_player_finished"]

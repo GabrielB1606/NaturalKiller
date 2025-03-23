@@ -3,8 +3,11 @@ Célula Dendrítica: [[Hola]], soy una célula dendrítica. Si me ayudas a conse
 Célula Dendrítica: ¿Necesitas que llame más linfocitos T?. 
 - Si
 	Célula Dendrítica: [[Ok!|¡En camino!]]
+	do CrawlerManager.dialoguing = false
+	do CrawlerManager.player.set_cell_type(CrawlerManager.TeamEnum.ALLY_T)
 	do CrawlerManager.goto_scroller()
 	=> END
 - [[No|Olvídalo]]
 	Célula Dendrítica: Ok.
+	do CrawlerManager.dialoguing = false
 	=> END
