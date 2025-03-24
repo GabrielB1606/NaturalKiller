@@ -227,7 +227,6 @@ visible = false
 layout_mode = 1
 
 [node name="DeadMenu" parent="Control" instance=ExtResource("8_flo80")]
-visible = false
 layout_mode = 1
 
 [node name="Tutorial" type="Control" parent="Control"]
@@ -250,9 +249,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -444.0
-offset_top = -238.5
+offset_top = -344.0
 offset_right = 444.0
-offset_bottom = 238.5
+offset_bottom = 344.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("12_x08tx")
@@ -264,9 +263,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 2.0
-offset_top = -189.382
+offset_top = -270.579
 offset_right = 2.0
-offset_bottom = -155.382
+offset_bottom = -234.579
 grow_horizontal = 2
 grow_vertical = 2
 text = "¡DESTRUYE TODAS LAS CÉLULAS CANCERÍGENAS QUE VEAS!"
@@ -279,68 +278,71 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 1.0
-offset_top = -101.829
-offset_right = 1.0
-offset_bottom = 134.171
+offset_left = 49.0
+offset_top = -184.873
+offset_right = -47.0
+offset_bottom = 244.127
 grow_horizontal = 2
 grow_vertical = 2
 text = "Muevete usando              y apunta con         .
 
-Ataca usando        .
+Ataca usando        para inducir la apoptosis en las células cancerígenas
 
 Acóplate a células cancerígenas con        .
 
-Interactúa con las células dendríticas acercándote a ellas y presionando        ."
+Interactúa con las células dendríticas acercándote a ellas y presionando        .
+
+Adéntrate en el microambiente tumoral y elimina células cancerígenas. Con cada célula que elimines, la salud del paciente mejorará. Mientras mejor sea la salud del paciente, más probable es que entre en estado de REMISIÓN."
 label_settings = SubResource("LabelSettings_d5th5")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="xbox" type="Control" parent="Control/Tutorial/move&attack"]
 visible = false
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 11.0
-offset_top = -297.475
-offset_right = 11.0
-offset_bottom = -297.475
+anchor_bottom = 0.5
+offset_top = -211.0
+offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="XboxStickL" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
-position = Vector2(424, 469.004)
+position = Vector2(433, 40.2877)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("14_qgn28")
 
 [node name="XboxStickR" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
-position = Vector2(611, 466.949)
+position = Vector2(620, 38.2327)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_yk0if")
 
 [node name="XboxRt" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
-position = Vector2(497, 529.343)
+position = Vector2(255, 102.726)
 scale = Vector2(0.5, 0.503178)
 texture = ExtResource("16_4cb24")
 
 [node name="XboxLt" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
-position = Vector2(605, 589.724)
+position = Vector2(614, 161.008)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("17_0v23t")
 
 [node name="XboxButtonA" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
-position = Vector2(779, 650.105)
+position = Vector2(788, 221.389)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("18_mok6s")
 
 [node name="keyboard" type="Control" parent="Control/Tutorial/move&attack"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -18.7142
+anchor_bottom = 0.5
+offset_top = -336.716
 offset_right = 784.0
-offset_bottom = 404.286
+offset_bottom = 607.284
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.535931, 0.535931)
@@ -382,7 +384,7 @@ scale = Vector2(0.932956, 0.932956)
 texture = ExtResource("23_swfs5")
 
 [node name="MouseLeft" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard"]
-position = Vector2(949.749, 430.768)
+position = Vector2(477.673, 430.009)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("24_v3yid")
 
@@ -403,10 +405,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = -90.153
-offset_right = 80.0
-offset_bottom = -41.153
+offset_left = -113.0
+offset_top = -135.0
+offset_right = 113.0
+offset_bottom = -66.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3

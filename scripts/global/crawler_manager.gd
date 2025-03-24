@@ -8,6 +8,7 @@ enum EventEnum {NON, REM, QUIMIO, RADIO, INM, RSK}
 
 var current_player_cell_type : TeamEnum = TeamEnum.ALLY_NK
 var current_difficulty : DifficultyEnum = DifficultyEnum.MID
+var current_tcell_qty : int = 0
 
 #event related state
 var events : Array[RoomStats] = [
@@ -133,18 +134,31 @@ func append_room():
 	
 	
 func next_room_stats():
-	var ad : float = 10
-	var hp : float = 10
-	var mv : float = 10
-	var qty : float = 10
-	var freq : float = 10
+	var ad : float = 5
+	var hp : float = 8
+	var mv : float = 0.125
+	var qty : float = 2
+	var freq : float = 0.075
 	
+	if current_difficulty == DifficultyEnum.EASY:
+		ad /= 2
+		hp /= 2
+		mv /= 2
+		qty /= 2
+		freq /= 2
+	elif current_difficulty == DifficultyEnum.HARD:
+		ad *= 2
+		hp *= 2
+		mv *= 2
+		qty *= 2
+		freq *= 2
 	
-	room_stats.enemies_ad += 10
-	room_stats.enemies_hp += 10
-	room_stats.enemies_mv += 0.25
-	room_stats.enemies_qty += 2
-
+	room_stats.enemies_ad += ad
+	room_stats.enemies_hp += hp
+	room_stats.enemies_mv += mv
+	room_stats.enemies_qty += qty
+	room_stats.enemies_freq -= freq
+	
 func get_enemies_hp():
 	var hp : float = room_stats.enemies_hp + events[current_room.event].enemies_hp
 	return hp

@@ -3,6 +3,7 @@ extends Control
 @onready var dungeon_crawler: Button = $"Main/Dungeon Crawler"
 @onready var main: VBoxContainer = $Main
 @onready var dificultad: VBoxContainer = $Dificultad
+@onready var mid: Button = $Dificultad/mid
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +24,8 @@ func _on_infinite_scroller_pressed() -> void:
 func _on_dungeon_crawler_pressed() -> void:
 	dificultad.visible = true
 	main.visible = false
-	dungeon_crawler.grab_focus()
+	
+	mid.grab_focus()
 	#get_tree().change_scene_to_file("res://scenes/crawler/Crawler.tscn")
 
 
@@ -36,7 +38,7 @@ func _on_options_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
-	$Dificultad/mid.grab_focus()
+	dungeon_crawler.grab_focus()
 	dificultad.visible = false
 	main.visible = true
 
