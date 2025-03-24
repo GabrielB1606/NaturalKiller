@@ -104,18 +104,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.76837e-06)
 shape = SubResource("BoxShape3D_4bt5b")
 
 [node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("room")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47, 1.2, -6.05)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47, 0.8, -6.05)
 script = ExtResource("4_j0slf")
 room = NodePath("..")
 
 [node name="Timer" type="Timer" parent="Spawner"]
 
 [node name="Spawner2" type="Node3D" parent="." node_paths=PackedStringArray("room")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33, 1.2, -9.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33, 0.8, -9.75)
 script = ExtResource("4_j0slf")
 room = NodePath("..")
 
 [node name="Timer" type="Timer" parent="Spawner2"]
+
+[node name="Spawner3" type="Node3D" parent="." node_paths=PackedStringArray("room")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.06, 0.8, -11.95)
+script = ExtResource("4_j0slf")
+room = NodePath("..")
+
+[node name="Timer" type="Timer" parent="Spawner3"]
 
 [node name="NPCs" type="Node3D" parent="."]
 
@@ -140,5 +147,6 @@ shape = SubResource("CylinderShape3D_b8fv4")
 [connection signal="area_entered" from="EnterArea" to="." method="_on_enter_area_area_entered"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="Spawner2/Timer" to="Spawner2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner3/Timer" to="Spawner3" method="_on_timer_timeout"]
 [connection signal="body_entered" from="NPCs/DendriticCell/InteractionArea" to="NPCs/DendriticCell" method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="NPCs/DendriticCell/InteractionArea" to="NPCs/DendriticCell" method="_on_interaction_area_body_exited"]

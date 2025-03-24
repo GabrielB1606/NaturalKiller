@@ -176,6 +176,14 @@ material_override = ExtResource("2_5wtqq")
 use_collision = true
 size = Vector3(9.98, 3, 0.5)
 
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7.21, 2.94, -9.66152)
+polygon = PackedVector2Array(-6.65, 0.99, -0.01, 1.16, 1, 1, 1.04, -12.41)
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="NavigationRegion3D/walls"]
+transform = Transform3D(-1, 1.19209e-07, 6.21725e-15, 0, -4.37114e-08, 1, 1.19209e-07, 1, 4.37114e-08, -8.59, 2.94, 2.68848)
+polygon = PackedVector2Array(-6.65, 0.99, -0.01, 1.16, 1, 1, 1.04, -12.41)
+
 [node name="EnterArea" type="Area3D" parent="."]
 transform = Transform3D(2.6, 0, 0, 0, 1, 0, 0, 0, 0.6, -1.58, 1.43, -1.76)
 
@@ -184,18 +192,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.563075, 0.12, 0.183339)
 shape = SubResource("BoxShape3D_4bt5b")
 
 [node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("room")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81, 1.2, -6.82)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81, 0.54, -6.82)
 script = ExtResource("4_ufcoo")
 room = NodePath("..")
 
 [node name="Timer" type="Timer" parent="Spawner"]
 
 [node name="Spawner2" type="Node3D" parent="." node_paths=PackedStringArray("room")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.2, -12.97)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0.57, -12.97)
 script = ExtResource("4_ufcoo")
 room = NodePath("..")
 
 [node name="Timer" type="Timer" parent="Spawner2"]
+
+[node name="Spawner3" type="Node3D" parent="." node_paths=PackedStringArray("room")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.43, 0.57, -23.38)
+script = ExtResource("4_ufcoo")
+room = NodePath("..")
+
+[node name="Timer" type="Timer" parent="Spawner3"]
+
+[node name="Spawner4" type="Node3D" parent="." node_paths=PackedStringArray("room")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.57, -23.38)
+script = ExtResource("4_ufcoo")
+room = NodePath("..")
+
+[node name="Timer" type="Timer" parent="Spawner4"]
+
+[node name="Spawner5" type="Node3D" parent="." node_paths=PackedStringArray("room")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.71, 0.57, -26.84)
+script = ExtResource("4_ufcoo")
+room = NodePath("..")
+
+[node name="Timer" type="Timer" parent="Spawner5"]
 
 [node name="NPCs" type="Node3D" parent="."]
 
@@ -221,5 +250,8 @@ transform = Transform3D(2, 0, 0, 0, 1.3, 0, 0, 0, 1.7, 0, 6.04, -14.7)
 [connection signal="area_entered" from="EnterArea" to="." method="_on_enter_area_area_entered"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="Spawner2/Timer" to="Spawner2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner3/Timer" to="Spawner3" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner4/Timer" to="Spawner4" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner5/Timer" to="Spawner5" method="_on_timer_timeout"]
 [connection signal="body_entered" from="NPCs/DendriticCell/InteractionArea" to="NPCs/DendriticCell" method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="NPCs/DendriticCell/InteractionArea" to="NPCs/DendriticCell" method="_on_interaction_area_body_exited"]

@@ -54,6 +54,7 @@ func enemy_defeated():
 func onEntered():
 	CrawlerManager.current_room = self
 	if !entered:
+		CrawlerManager.player.stats = CrawlerManager.get_room_player_stats(event)
 		if event == CrawlerManager.EventEnum.QUIMIO:
 			rain_particles.emitting = true
 		if(id == 2):

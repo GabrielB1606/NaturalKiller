@@ -142,11 +142,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.148459, -0.1, -0.733327)
 shape = SubResource("BoxShape3D_4bt5b")
 
 [node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("room")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93, 1.2, -6.09)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93, 0.53, -6.09)
 script = ExtResource("4_7vt0j")
 room = NodePath("..")
 
 [node name="Timer" type="Timer" parent="Spawner"]
+
+[node name="Spawner2" type="Node3D" parent="." node_paths=PackedStringArray("room")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0.53, -8.94)
+script = ExtResource("4_7vt0j")
+room = NodePath("..")
+
+[node name="Timer" type="Timer" parent="Spawner2"]
+
+[node name="Spawner3" type="Node3D" parent="." node_paths=PackedStringArray("room")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.57, 0.53, -14.64)
+script = ExtResource("4_7vt0j")
+room = NodePath("..")
+
+[node name="Timer" type="Timer" parent="Spawner3"]
+
+[node name="Spawner4" type="Node3D" parent="." node_paths=PackedStringArray("room")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.26, 0.53, -17.04)
+script = ExtResource("4_7vt0j")
+room = NodePath("..")
+
+[node name="Timer" type="Timer" parent="Spawner4"]
 
 [node name="NPCs" type="Node3D" parent="."]
 
@@ -170,5 +191,8 @@ shape = SubResource("CylinderShape3D_3vlbe")
 
 [connection signal="area_entered" from="EnterArea" to="." method="_on_enter_area_area_entered"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner2/Timer" to="Spawner2" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner3/Timer" to="Spawner3" method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner4/Timer" to="Spawner4" method="_on_timer_timeout"]
 [connection signal="body_entered" from="NPCs/DendriticCell/InteractionArea" to="NPCs/DendriticCell" method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="NPCs/DendriticCell/InteractionArea" to="NPCs/DendriticCell" method="_on_interaction_area_body_exited"]

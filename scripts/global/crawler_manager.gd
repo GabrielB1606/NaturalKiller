@@ -15,14 +15,23 @@ var character_stats := [
 	CharacterStats.create(5, 4.5, 100, 25),
 ]
 
+var event_character_stats := [
+	CharacterStats.create(0, 4.5, 0, 0), # No event
+	CharacterStats.create(0, 4.5, 0, 0), # Remission
+	CharacterStats.create(-1, 4.5, 0, 0), # Quimio
+	CharacterStats.create(0, 4.5, 0, 0), # Radio
+	CharacterStats.create(1, 4.5, 20, 10), # Inmuno
+	CharacterStats.create(0, 4.5, 0, 0), # Risk
+]
+
 #event related state
 var events : Array[RoomStats] = [
 	RoomStats.create_modifier(),                      # No event
 	RoomStats.create_modifier(),                      # Remission
-	RoomStats.create_modifier(0.5, 0, 0.5,  0, -3),   # Quimio
-	RoomStats.create_modifier(1.0, 4, 0  ,  0,  0),   # Radio
-	RoomStats.create_modifier(0.5, 0, 0  ,  0,  0),   # Inmuno
-	RoomStats.create_modifier(1  , 4,-0.5, 10,  3),   # Risk
+	RoomStats.create_modifier(0.5, 0, 0.5,  0, -1),   # Quimio
+	RoomStats.create_modifier(1.0, 2, 0  ,  0,  0),   # Radio
+	RoomStats.create_modifier(1, 0, 0  ,  0,  0),   # Inmuno
+	RoomStats.create_modifier(1  , 4,-0.5, 10,  2),   # Risk
 ]
 
 #player related state
@@ -55,6 +64,21 @@ var cinematics_played = {
 	"inmunoedition": false,
 	"journey": false
 }
+
+func get_room_player_stats(event) -> CharacterStats:
+	
+	var char:CharacterStats = character_stats[current_player_cell_type]
+	var ev:CharacterStats = event_character_stats[event]
+	var ans : CharacterStats = CharacterStats.create(
+		char.base_speed + ev.base_speed,
+		4.5,
+		char.base_health + ev.base_health,
+		char.base_attack_damage + ev.base_attack_damage
+	)
+	if event != EventEnum.INM:
+		ans.current_health = player.stats.current_health
+		
+	return ans
 
 func is_locked() -> bool:
 	return current_scene.video_manager.is_playing() || current_scroller != null || dialoguing || !player.visible
@@ -166,21 +190,21 @@ func next_room_stats():
 	
 func get_enemies_hp():
 	var hp : float = room_stats.enemies_hp + events[current_room.event].enemies_hp
-	return hp
+	return randf_range(hp-10, hp+10)
 
 func get_enemies_ad():
 	var ad: float = room_stats.enemies_ad + events[current_room.event].enemies_ad
-	return ad
+	return randf_range(ad-5, ad+5)
 
 func get_enemies_mv():
 	var mv : float = room_stats.enemies_mv + events[current_room.event].enemies_mv
-	return mv
+	return randf_range(mv-0.25, mv+0.25)
 
 func get_spwn_freq():
 	var freq : float = room_stats.spwn_freq
 	if current_room != null && current_room.event != null:
 		freq += events[current_room.event].spwn_freq
-	return freq
+	return randf_range(freq-0.5, freq+0.5)
 
 func get_time_mult():
 	return room_stats.time_mult + events[current_room.event].time_mult
