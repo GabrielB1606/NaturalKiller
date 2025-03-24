@@ -66,9 +66,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -330.0
-offset_top = -196.0
+offset_top = -321.0
 offset_right = 330.0
-offset_bottom = -75.0
+offset_bottom = -200.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -80,22 +80,23 @@ text = "Natural Killer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Main" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -244.0
-offset_top = -36.0
-offset_right = 245.0
-offset_bottom = 165.0
+offset_left = -389.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 101.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.52262, 1.52262)
 theme_override_constants/separation = 40
 
-[node name="Infinite Scroller" type="Button" parent="VBoxContainer"]
+[node name="Infinite Scroller" type="Button" parent="Main"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -112,7 +113,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
 text = "Infinite Scroller"
 
-[node name="Dungeon Crawler" type="Button" parent="VBoxContainer"]
+[node name="Dungeon Crawler" type="Button" parent="Main"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -128,12 +129,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
 text = "Jugar"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Main"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 165
 
-[node name="Exit" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Exit" type="Button" parent="Main/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -149,7 +150,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
 text = "Salir"
 
-[node name="Options" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="Options" type="Button" parent="Main/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -165,7 +166,91 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
 text = "Opciones"
 
-[connection signal="pressed" from="VBoxContainer/Infinite Scroller" to="." method="_on_infinite_scroller_pressed"]
-[connection signal="pressed" from="VBoxContainer/Dungeon Crawler" to="." method="_on_dungeon_crawler_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Options" to="." method="_on_options_pressed"]
+[node name="Dificultad" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -175.0
+offset_right = 245.0
+offset_bottom = 251.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="ez" type="Button" parent="Dificultad"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
+text = "Fácil"
+
+[node name="mid" type="Button" parent="Dificultad"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
+text = "Regular"
+
+[node name="hard" type="Button" parent="Dificultad"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
+text = "Difícil"
+
+[node name="back" type="Button" parent="Dificultad"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
+text = "Volver"
+
+[connection signal="pressed" from="Main/Infinite Scroller" to="." method="_on_infinite_scroller_pressed"]
+[connection signal="pressed" from="Main/Dungeon Crawler" to="." method="_on_dungeon_crawler_pressed"]
+[connection signal="pressed" from="Main/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Main/HBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Dificultad/ez" to="." method="_on_ez_pressed"]
+[connection signal="pressed" from="Dificultad/mid" to="." method="_on_mid_pressed"]
+[connection signal="pressed" from="Dificultad/hard" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="Dificultad/back" to="." method="_on_back_pressed"]

@@ -10,10 +10,10 @@ extends CharacterBody3D
 @onready var head_hb: Area3D = $Visuals/HeadHB
 
 @export var stats:CharacterStats = CharacterStats.create(
-	randf_range(CrawlerManager.room_stats.enemies_mv - 0.5, CrawlerManager.room_stats.enemies_mv + 0.5 ), 
+	CrawlerManager.get_enemies_mv(), 
 	4.5, 
-	randf_range(CrawlerManager.room_stats.enemies_hp - 25, CrawlerManager.room_stats.enemies_hp + 25 ), 
-	randf_range(CrawlerManager.room_stats.enemies_ad - 10, CrawlerManager.room_stats.enemies_ad + 20 )
+	CrawlerManager.get_enemies_hp(), 
+	CrawlerManager.get_enemies_ad(), 
 )
 
 const JUMP_VELOCITY = 4.5

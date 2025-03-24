@@ -59,6 +59,22 @@ grow_vertical = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 165
 
+[node name="Resume" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_eqoc4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_nisjl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eqoc4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nisjl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_v7h3a")
+text = "Resumir"
+
 [node name="Exit" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -73,23 +89,6 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_nisjl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_eqoc4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_nisjl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_v7h3a")
-text = "Exit
-"
-
-[node name="Options" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_eqoc4")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_nisjl")
-theme_override_styles/hover = SubResource("StyleBoxFlat_eqoc4")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_nisjl")
-theme_override_styles/normal = SubResource("StyleBoxFlat_v7h3a")
-text = "Options"
+text = "Ir al menú"
 
 [connection signal="pressed" from="HBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ssy4xi0lo7lr"]
+[gd_scene load_steps=36 format=3 uid="uid://ssy4xi0lo7lr"]
 
 [ext_resource type="Script" path="res://scripts/crawler/crawler.gd" id="1_lvomn"]
 [ext_resource type="PackedScene" uid="uid://8oqjffmibcdy" path="res://scripts/crawler/player/player/Player.tscn" id="3_4637n"]
@@ -11,6 +11,21 @@
 [ext_resource type="Texture2D" uid="uid://yeewjpaids8k" path="res://assets/textures/ui/lifeline.png" id="9_ip3g2"]
 [ext_resource type="VideoStream" path="res://assets/videos/intro.ogv" id="10_0mlxi"]
 [ext_resource type="Script" path="res://scripts/crawler/video_manager.gd" id="10_wf0ds"]
+[ext_resource type="Script" path="res://scripts/crawler/tutorial.gd" id="12_ksoim"]
+[ext_resource type="Texture2D" uid="uid://2un6ock24hb4" path="res://assets/textures/ui/tip.png" id="12_x08tx"]
+[ext_resource type="Texture2D" uid="uid://crnb1wg5j45g7" path="res://assets/textures/ui/input/xbox/xbox_stick_l.png" id="14_qgn28"]
+[ext_resource type="Texture2D" uid="uid://c12w2xq1rqu80" path="res://assets/textures/ui/input/xbox/xbox_stick_r.png" id="15_yk0if"]
+[ext_resource type="Texture2D" uid="uid://cjqiie52ijapd" path="res://assets/textures/ui/input/xbox/xbox_rt.png" id="16_4cb24"]
+[ext_resource type="Texture2D" uid="uid://gm0m5pg81v0x" path="res://assets/textures/ui/input/xbox/xbox_lt.png" id="17_0v23t"]
+[ext_resource type="Texture2D" uid="uid://nc0blpyvc4pu" path="res://assets/textures/ui/input/xbox/xbox_button_a.png" id="18_mok6s"]
+[ext_resource type="Texture2D" uid="uid://b6wmqr8wg88do" path="res://assets/textures/ui/input/keyboard/keyboard_w.png" id="19_yy3kx"]
+[ext_resource type="Texture2D" uid="uid://d0jmf1dnl2gfk" path="res://assets/textures/ui/input/keyboard/keyboard_a.png" id="20_858jf"]
+[ext_resource type="Texture2D" uid="uid://bf0wg5as8351w" path="res://assets/textures/ui/input/keyboard/keyboard_s.png" id="21_31ahl"]
+[ext_resource type="Texture2D" uid="uid://bxiswp0guni43" path="res://assets/textures/ui/input/keyboard/keyboard_d.png" id="22_hva3s"]
+[ext_resource type="Texture2D" uid="uid://eyscwutqyy8p" path="res://assets/textures/ui/input/keyboard/mouse_move.png" id="23_swfs5"]
+[ext_resource type="Texture2D" uid="uid://b04wp7nereiuy" path="res://assets/textures/ui/input/keyboard/mouse_left.png" id="24_v3yid"]
+[ext_resource type="Texture2D" uid="uid://otgu6gss3fru" path="res://assets/textures/ui/input/keyboard/mouse_right.png" id="25_xvjq6"]
+[ext_resource type="Texture2D" uid="uid://d1s0vw28c6h1s" path="res://assets/textures/ui/input/keyboard/keyboard_e.png" id="26_c33tl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_75y1u"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -32,6 +47,47 @@ fog_density = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_ob31g"]
 font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_r2tom"]
+font_size = 26
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d5th5"]
+font_size = 20
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cn8b0"]
+bg_color = Color(0.946251, 0.667545, 0.651612, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.411765)
+shadow_size = 3
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqsvm"]
+bg_color = Color(0.734366, 0.303095, 0.303485, 1)
+skew = Vector2(0.07, 0.045)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.411765)
+shadow_size = 3
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vjsy"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.411765)
+shadow_size = 3
+shadow_offset = Vector2(0, 10)
 
 [node name="Crawler" type="Node3D"]
 script = ExtResource("1_lvomn")
@@ -174,6 +230,200 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[node name="Tutorial" type="Control" parent="Control"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.993685)
+script = ExtResource("12_ksoim")
+
+[node name="move&attack" type="NinePatchRect" parent="Control/Tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.0
+offset_top = -238.5
+offset_right = 444.0
+offset_bottom = 238.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_x08tx")
+
+[node name="Title" type="Label" parent="Control/Tutorial/move&attack"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -189.382
+offset_right = 2.0
+offset_bottom = -155.382
+grow_horizontal = 2
+grow_vertical = 2
+text = "¡DESTRUYE TODAS LAS CÉLULAS CANCERÍGENAS QUE VEAS!"
+label_settings = SubResource("LabelSettings_r2tom")
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="Control/Tutorial/move&attack"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = -101.829
+offset_right = 1.0
+offset_bottom = 134.171
+grow_horizontal = 2
+grow_vertical = 2
+text = "Muevete usando              y apunta con         .
+
+Ataca usando        .
+
+Acóplate a células cancerígenas con        .
+
+Interactúa con las células dendríticas acercándote a ellas y presionando        ."
+label_settings = SubResource("LabelSettings_d5th5")
+horizontal_alignment = 1
+
+[node name="xbox" type="Control" parent="Control/Tutorial/move&attack"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -297.475
+offset_right = 11.0
+offset_bottom = -297.475
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="XboxStickL" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
+position = Vector2(424, 469.004)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_qgn28")
+
+[node name="XboxStickR" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
+position = Vector2(611, 466.949)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_yk0if")
+
+[node name="XboxRt" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
+position = Vector2(497, 529.343)
+scale = Vector2(0.5, 0.503178)
+texture = ExtResource("16_4cb24")
+
+[node name="XboxLt" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
+position = Vector2(605, 589.724)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_0v23t")
+
+[node name="XboxButtonA" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
+position = Vector2(779, 650.105)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("18_mok6s")
+
+[node name="keyboard" type="Control" parent="Control/Tutorial/move&attack"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -18.7142
+offset_right = 784.0
+offset_bottom = 404.286
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.535931, 0.535931)
+
+[node name="wasd" type="Control" parent="Control/Tutorial/move&attack/keyboard"]
+layout_mode = 1
+anchor_left = 0.512
+anchor_top = 0.5
+anchor_right = 0.512
+anchor_bottom = 0.5
+offset_left = -70.5154
+offset_top = -143.165
+offset_right = -30.5154
+offset_bottom = -103.165
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.583303, 0.583303)
+
+[node name="KeyboardW" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard/wasd"]
+position = Vector2(44.7552, -38.3841)
+scale = Vector2(1, 1.00636)
+texture = ExtResource("19_yy3kx")
+
+[node name="KeyboardA" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard/wasd"]
+position = Vector2(-15.2447, 16.9655)
+texture = ExtResource("20_858jf")
+
+[node name="KeyboardS" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard/wasd"]
+position = Vector2(44.7552, 16.9655)
+texture = ExtResource("21_31ahl")
+
+[node name="KeyboardD" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard/wasd"]
+position = Vector2(102.755, 16.9655)
+texture = ExtResource("22_hva3s")
+
+[node name="MouseMove" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard"]
+position = Vector2(1164.33, 314.346)
+scale = Vector2(0.932956, 0.932956)
+texture = ExtResource("23_swfs5")
+
+[node name="MouseLeft" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard"]
+position = Vector2(949.749, 430.768)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("24_v3yid")
+
+[node name="MouseRight" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard"]
+position = Vector2(1147.54, 543.434)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("25_xvjq6")
+
+[node name="KeyboardE" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard"]
+position = Vector2(1468.47, 652.345)
+scale = Vector2(0.932956, 0.932956)
+texture = ExtResource("26_c33tl")
+
+[node name="Exit" type="Button" parent="Control/Tutorial/move&attack"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -90.153
+offset_right = 80.0
+offset_bottom = -41.153
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_cn8b0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_eqsvm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cn8b0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_eqsvm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_7vjsy")
+text = "Continuar"
+
 [node name="Map" type="Node3D" parent="."]
 
 [connection signal="finished" from="Control/VideoManager/Player" to="Control/VideoManager" method="_on_player_finished"]
+[connection signal="pressed" from="Control/Tutorial/move&attack/Exit" to="Control/Tutorial" method="_on_exit_pressed"]

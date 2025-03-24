@@ -5,7 +5,6 @@ class_name Room extends Node3D
 
 var width := 10
 var length := 10
-var enemies_left := 2
 var id : int = -1
 
 var locked := false

@@ -10,7 +10,7 @@ var sparse :float = 1
 
 func _ready() -> void:
 	freq = CrawlerManager.room_stats.spwn_freq
-	timer.wait_time = randf_range(freq - sparse, freq + sparse)
+	timer.wait_time = CrawlerManager.get_spwn_freq()
 	timer.start()
 
 func _on_timer_timeout() -> void:
@@ -21,6 +21,6 @@ func _on_timer_timeout() -> void:
 		CrawlerManager.current_enemies += 1
 		room.stats.enemies_qty -= 1
 		
-	timer.wait_time = randf_range(freq - sparse, freq + sparse)
+	timer.wait_time = CrawlerManager.get_spwn_freq()
 	timer.start()
 	

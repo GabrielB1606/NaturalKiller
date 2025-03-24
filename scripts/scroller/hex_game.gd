@@ -7,6 +7,7 @@ var tcell = preload("res://characters/Cell.tscn")
 @onready var back: Node3D = $Player/CharacterBody3D/back
 var random = RandomNumberGenerator.new()
 const modelScale := 1
+@onready var tutorial: Control = $Control/Tutorial
 
 @onready var tcells :Array[Cell] = [
 	$Player/CharacterBody3D/front,
@@ -51,6 +52,13 @@ func _ready() -> void:
 	#for i in 6:
 		#spawnTCell(i)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func show_tutorial():
+	tutorial.visible = true
+	get_tree().paused = true
+	$test_tube2_culling_fix.pause_texture()
+	if InputHelper.device == "keyboard":
+		$"Control/Tutorial/move&attack/keyboard".visible= true
+		$"Control/Tutorial/move&attack/xbox".visible = false
+	else:
+		$"Control/Tutorial/move&attack/keyboard".visible= false
+		$"Control/Tutorial/move&attack/xbox".visible = true

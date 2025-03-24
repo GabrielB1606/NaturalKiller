@@ -1,12 +1,18 @@
-extends Node3D
+class_name Tube extends Node3D
 
 @onready var tube: Node3D = $"."
 const rotation_speed := 5.0
+@onready var grid: MeshInstance3D = $Grid
+
+func pause_texture():
+	grid.material_override.set_shader_parameter("delta_time", 0)
+
+func unpause_texture():
+	grid.material_override.set_shader_parameter("delta_time", 0.017)
 
 func _physics_process(delta: float) -> void:
 	var direction := -Input.get_axis("left", "right")
-	#var mat:ShaderMaterial = material_override
-	#mat.set_shader_parameter("delta_time", delta)
+
 	if direction:
 		tube.rotate_y(rotation_speed * delta * direction)
 	#else:

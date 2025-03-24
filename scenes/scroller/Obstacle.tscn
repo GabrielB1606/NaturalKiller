@@ -5,7 +5,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_7k03j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f760v"]
-albedo_color = Color(0.773364, 0.332505, 0.337872, 1)
+albedo_color = Color(1, 0.129412, 0.129412, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_1yowk"]
 

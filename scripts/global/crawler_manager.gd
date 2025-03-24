@@ -3,7 +3,11 @@ extends Node
 #enums
 enum TeamEnum {ALLY_T, ALLY_NK, ENEMY, NEUTRAL}
 enum HitReturnEnum {HIT, IMMUNE, DEATH}
+enum DifficultyEnum {EASY, MID, HARD}
 enum EventEnum {NON, REM, QUIMIO, RADIO, INM, RSK}
+
+var current_player_cell_type : TeamEnum = TeamEnum.ALLY_NK
+var current_difficulty : DifficultyEnum = DifficultyEnum.MID
 
 #event related state
 var events : Array[RoomStats] = [
@@ -30,7 +34,7 @@ var room_prefabs : Array[Resource] = [
 var rooms:Array[Room]
 
 #game related state
-var current_health:float = 8.0
+var current_health:float = 20.0
 var current_enemies:int = 0
 var current_map_length:float = 0
 var cap_enemies:int = 8
@@ -49,6 +53,11 @@ var cinematics_played = {
 func is_locked() -> bool:
 	return current_scene.video_manager.is_playing() || current_scroller != null || dialoguing || !player.visible
 
+func death():
+	current_health -= (current_room.stats.enemies_qty + current_enemies)
+	current_health = max(1, current_health)
+	current_scene.health_lbl.text = str(int(current_health)) + "%"
+
 func goto_scroller():
 	if !cinematics_played["journey"]:
 		cinematics_played["journey"] = true
@@ -59,6 +68,8 @@ func goto_scroller():
 	current_scroller.global_position.z = 100
 	current_scene.camera.disable()
 	current_scene.gui.visible = false
+	current_scroller.show_tutorial()
+	current_player_cell_type = TeamEnum.ALLY_T
 
 func goto_crawler():
 	current_scene.gui.visible = true
@@ -67,6 +78,7 @@ func goto_crawler():
 		remove_child(current_scroller)
 		current_scroller.queue_free()
 		current_scroller = null
+		get_tree().reload_current_scene()
 
 func init(root: CrawlerRoot):
 	room_stats = RoomStats.create()
@@ -85,6 +97,7 @@ func init(root: CrawlerRoot):
 	rooms[1].id = 1
 	rooms[0].set_NPCs_visible(true)
 	rooms[1].set_door_visible(false)
+	player.set_cell_type(current_player_cell_type)
 
 #func restart( t_scene)
 
@@ -118,25 +131,40 @@ func append_room():
 	room.global_position.z -= current_map_length
 	current_map_length += room.length
 	
+	
+func next_room_stats():
+	var ad : float = 10
+	var hp : float = 10
+	var mv : float = 10
+	var qty : float = 10
+	var freq : float = 10
+	
+	
 	room_stats.enemies_ad += 10
 	room_stats.enemies_hp += 10
 	room_stats.enemies_mv += 0.25
 	room_stats.enemies_qty += 2
 
 func get_enemies_hp():
-	return room_stats.enemies_hp + events[current_room].enemies_hp
+	var hp : float = room_stats.enemies_hp + events[current_room.event].enemies_hp
+	return hp
 
 func get_enemies_ad():
-	return room_stats.enemies_ad + events[current_room].enemies_ad
+	var ad: float = room_stats.enemies_ad + events[current_room.event].enemies_ad
+	return ad
 
 func get_enemies_mv():
-	return room_stats.enemies_mv + events[current_room].enemies_mv
+	var mv : float = room_stats.enemies_mv + events[current_room.event].enemies_mv
+	return mv
 
 func get_spwn_freq():
-	return room_stats.spwn_freq + events[current_room].spwn_freq
+	var freq : float = room_stats.spwn_freq
+	if current_room != null && current_room.event != null:
+		freq += events[current_room.event].spwn_freq
+	return freq
 
 func get_time_mult():
-	return room_stats.time_mult + events[current_room].time_mult
+	return room_stats.time_mult + events[current_room.event].time_mult
 
 func play_event_animation(event):
 	current_scene.video_manager.play_event(event)

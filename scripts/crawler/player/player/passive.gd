@@ -10,7 +10,7 @@ func _enter() -> void:
 	pass
 
 func onInput(event: InputEvent, movement_vector: Vector3, look_vector: Vector3):
-	if event.is_action_pressed("reach"):
+	if event.is_action_pressed("reach") || Input.is_action_pressed("reach"):
 		get_root().dispatch("to_reach")
 
 func onPhysicsProcess(delta: float):

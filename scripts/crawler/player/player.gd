@@ -59,7 +59,7 @@ func _ready() -> void:
 						if body_held == b:
 							body_held = null
 							fight_state_machine.dispatch("to_idle")
-							stats.current_health = max(stats.current_health+5, stats.base_health)
+							stats.current_health = min(stats.current_health+10, stats.base_health)
 					hit = true
 			if hit:
 				CrawlerManager.camera_rig.set_trauma(0.75)
@@ -76,11 +76,11 @@ func _input(event: InputEvent) -> void:
 	
 	var look_input := Input.get_vector("look_left", "look_right", "look_forward", "look_backward")
 	var look_vector :Vector3
-	if look_input.is_zero_approx():
+	if InputHelper.device == "keyboard":
 		look_vector = get_mouse_world_position( get_viewport().get_mouse_position() )
 		look_vector = look_vector - global_position 
 		look_vector.y = 0
-	else:
+	elif !look_input.is_zero_approx():
 		look_vector = (transform.basis * Vector3(look_input.x, 0, look_input.y)).normalized()
 	
 	if event.is_action_pressed("hit"):
@@ -101,6 +101,7 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if CrawlerManager.current_enemies > 0:
 		lifetime += delta
-		stats.current_health -= delta*CrawlerManager.current_room.stats.time_mult
+		stats.current_health -= delta*CrawlerManager.get_time_mult()
 	if stats.current_health <= 0:
+		CrawlerManager.death()
 		dead_menu.handleDeath()

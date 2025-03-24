@@ -1,6 +1,7 @@
 extends Control
 
 @onready var pause_menu: Control = $"."
+@onready var resume: Button = $HBoxContainer/Resume
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +16,7 @@ func handlePause():
 		pause_menu.hide()
 	else:
 		pause_menu.show()
+		resume.grab_focus()
 	get_tree().paused = !(get_tree().paused)
 
 

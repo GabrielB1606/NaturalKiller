@@ -60,21 +60,6 @@ transform = Transform3D(13, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, 1.34, -14.56)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.900002)
 shape = SubResource("BoxShape3D_4bt5b")
 
-[node name="Cell2" parent="." instance=ExtResource("4_hibwj")]
-transform = Transform3D(0.761151, 0, 0.277037, 0, 0.81, 0, -0.277037, 0, 0.761151, 0.659999, -0.0299998, -11.97)
-
-[node name="Cell4" parent="." instance=ExtResource("4_hibwj")]
-transform = Transform3D(0.761151, 0, 0.277037, 0, 0.81, 0, -0.277037, 0, 0.761151, 2.23, -0.0299998, -11.97)
-type = 1
-
-[node name="Cell3" parent="." instance=ExtResource("4_hibwj")]
-transform = Transform3D(0.761151, 0, 0.277037, 0, 0.81, 0, -0.277037, 0, 0.761151, -0.800001, -0.0299998, -11.97)
-type = 2
-
-[node name="Cell5" parent="." instance=ExtResource("4_hibwj")]
-transform = Transform3D(0.761151, 0, 0.277037, 0, 0.81, 0, -0.277037, 0, 0.761151, 3.77, -0.0299998, -11.97)
-type = 3
-
 [node name="NPCs" type="Node3D" parent="."]
 
 [node name="DendriticCell" type="Node3D" parent="NPCs"]

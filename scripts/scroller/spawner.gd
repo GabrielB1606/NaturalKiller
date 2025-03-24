@@ -5,6 +5,8 @@ var coin = preload("res://scenes/scroller/Coin.tscn")
 @onready var spawn_timer: Timer = $SpawnTimer
 const rotation_speed := 5.0
 @onready var points_label: Label = $"../Control/Timer/Points"
+@onready var player: Node3D = $"../Player"
+@onready var timer: Control = $"../Control/Timer"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +18,8 @@ func _process(delta: float) -> void:
 	var direction := -Input.get_axis("left", "right")
 	if direction:
 		rotate_y(rotation_speed * delta * direction)
+	if timer.time >= 13:
+		player.position.y -= delta*5
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -29,6 +33,7 @@ func _on_spawn_timer_timeout() -> void:
 		obj = coin.instantiate()
 		
 	obj.points_label = points_label
+	obj.glob_timer = $"../Control/Timer"
 	
 	#obs.position.y += 3.5
 	var r := 3.5
@@ -43,4 +48,7 @@ func _on_spawn_timer_timeout() -> void:
 	#print(obs.position)
 	add_child(obj)
 	spawn_timer.wait_time = randf_range(0.125, 1)
-	spawn_timer.start()
+	if $"../Control/Timer".time <= 13:
+		spawn_timer.start()
+	else:
+		$"../test_tube2_culling_fix".pause_texture()

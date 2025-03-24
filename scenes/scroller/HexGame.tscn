@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b56qmapxsan13"]
+[gd_scene load_steps=28 format=3 uid="uid://b56qmapxsan13"]
 
 [ext_resource type="Script" path="res://scripts/scroller/hex_game.gd" id="1_nnj7g"]
 [ext_resource type="Shader" path="res://shaders/neuronal.gdshader" id="2_40bpn"]
@@ -11,6 +11,11 @@
 [ext_resource type="Script" path="res://scenes/scroller/timer.gd" id="9_wkxlo"]
 [ext_resource type="Texture2D" uid="uid://crbdga7cop4nt" path="res://assets/textures/ui/pb_bg.png" id="10_mv6n5"]
 [ext_resource type="Texture2D" uid="uid://desta6cv3tjtq" path="res://assets/textures/ui/pb_fg.png" id="11_4heej"]
+[ext_resource type="Script" path="res://scripts/scroller/tutorial_hex.gd" id="12_m8tkf"]
+[ext_resource type="Texture2D" uid="uid://2un6ock24hb4" path="res://assets/textures/ui/tip.png" id="13_4qlpy"]
+[ext_resource type="Texture2D" uid="uid://crnb1wg5j45g7" path="res://assets/textures/ui/input/xbox/xbox_stick_l.png" id="14_y4pm8"]
+[ext_resource type="Texture2D" uid="uid://d0jmf1dnl2gfk" path="res://assets/textures/ui/input/keyboard/keyboard_a.png" id="19_e0mwp"]
+[ext_resource type="Texture2D" uid="uid://bxiswp0guni43" path="res://assets/textures/ui/input/keyboard/keyboard_d.png" id="20_m4gnv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w7xae"]
 render_priority = 0
@@ -40,6 +45,47 @@ tonemap_mode = 3
 
 [sub_resource type="LabelSettings" id="LabelSettings_77rrd"]
 font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_4hnwh"]
+font_size = 26
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gf0m7"]
+font_size = 20
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2s8vf"]
+bg_color = Color(0.946251, 0.667545, 0.651612, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.411765)
+shadow_size = 3
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8f54j"]
+bg_color = Color(0.734366, 0.303095, 0.303485, 1)
+skew = Vector2(0.07, 0.045)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.411765)
+shadow_size = 3
+shadow_offset = Vector2(0, 10)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_564gm"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.411765)
+shadow_size = 3
+shadow_offset = Vector2(0, 10)
 
 [node name="HexGame" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -178,4 +224,147 @@ nine_patch_stretch = true
 texture_under = ExtResource("10_mv6n5")
 texture_progress = ExtResource("11_4heej")
 
+[node name="Tutorial" type="Control" parent="Control"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.993685)
+script = ExtResource("12_m8tkf")
+
+[node name="move&attack" type="NinePatchRect" parent="Control/Tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.0
+offset_top = -238.5
+offset_right = 444.0
+offset_bottom = 238.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_4qlpy")
+
+[node name="Title" type="Label" parent="Control/Tutorial/move&attack"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -189.382
+offset_right = 2.0
+offset_bottom = -155.382
+grow_horizontal = 2
+grow_vertical = 2
+text = "¡SOBREVIVE AL VIAJE!"
+label_settings = SubResource("LabelSettings_4hnwh")
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="Control/Tutorial/move&attack"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 76.0
+offset_top = -101.5
+offset_right = -74.0
+offset_bottom = 134.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Muevete usando               .
+
+Esquiva las citoquinas (rojas) provenientes del cáncer. Y captura las citoquinas (verdes) dejadas por las células dendríticas."
+label_settings = SubResource("LabelSettings_gf0m7")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="xbox" type="Control" parent="Control/Tutorial/move&attack"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -318.608
+offset_right = 11.0
+offset_bottom = -318.608
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="XboxStickL" type="Sprite2D" parent="Control/Tutorial/move&attack/xbox"]
+position = Vector2(509, 469.004)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_y4pm8")
+
+[node name="keyboard" type="Control" parent="Control/Tutorial/move&attack"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -18.7142
+offset_right = 784.0
+offset_bottom = 404.286
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.535931, 0.535931)
+
+[node name="wasd" type="Control" parent="Control/Tutorial/move&attack/keyboard"]
+layout_mode = 1
+anchor_left = 0.512
+anchor_top = 0.5
+anchor_right = 0.512
+anchor_bottom = 0.5
+offset_left = 86.2211
+offset_top = -143.924
+offset_right = 126.221
+offset_bottom = -103.924
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.583303, 0.583303)
+
+[node name="KeyboardA" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard/wasd"]
+position = Vector2(-6.19888e-05, 16.9655)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("19_e0mwp")
+
+[node name="KeyboardD" type="Sprite2D" parent="Control/Tutorial/move&attack/keyboard/wasd"]
+position = Vector2(92.7672, 16.9655)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("20_m4gnv")
+
+[node name="Exit" type="Button" parent="Control/Tutorial/move&attack"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -90.153
+offset_right = 80.0
+offset_bottom = -41.153
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_2s8vf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_8f54j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2s8vf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8f54j")
+theme_override_styles/normal = SubResource("StyleBoxFlat_564gm")
+text = "Continuar"
+
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="Control/Tutorial/move&attack/Exit" to="Control/Tutorial" method="_on_exit_pressed"]

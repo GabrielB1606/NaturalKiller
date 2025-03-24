@@ -25,6 +25,8 @@ func _input(event: InputEvent) -> void:
 		stop()
 		if player.stream == VIAJE:
 			CrawlerManager.goto_scroller()
+		elif player.stream == INTRO:
+			CrawlerManager.current_scene.show_tutorial()
 
 func stop():
 	player.stop()
@@ -63,3 +65,5 @@ func _on_player_finished() -> void:
 		get_tree().change_scene_to_file("res://scenes/gui/main_menu.tscn")
 	elif player.stream == VIAJE:
 		CrawlerManager.goto_scroller()
+	elif player.stream == INTRO:
+		CrawlerManager.current_scene.show_tutorial()
