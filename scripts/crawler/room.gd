@@ -2,6 +2,7 @@ class_name Room extends Node3D
 
 @onready var door: CSGBox3D = $NavigationRegion3D/walls/door
 @onready var npcs: Node3D = $NPCs
+@onready var rain_particles: GPUParticles3D = $RainParticles
 
 var width := 10
 var length := 10
@@ -42,6 +43,7 @@ func check_complete():
 		spawners_active = false
 		CrawlerManager.open_room(id+1)
 		CrawlerManager.clear_room(id-2)
+		rain_particles.emitting = false
 
 func can_spawn_enemy() -> bool:
 	return spawners_active && CrawlerManager.can_spawn_enemy() && stats.enemies_qty > 0
@@ -52,6 +54,8 @@ func enemy_defeated():
 func onEntered():
 	CrawlerManager.current_room = self
 	if !entered:
+		if event == CrawlerManager.EventEnum.QUIMIO:
+			rain_particles.emitting = true
 		if(id == 2):
 			CrawlerManager.current_scene.video_manager.play_inmunoedition()
 		life_init = CrawlerManager.player.stats.current_health

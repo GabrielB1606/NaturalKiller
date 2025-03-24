@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd72kxool6jie"]
+[gd_scene load_steps=11 format=3 uid="uid://dd72kxool6jie"]
 
 [ext_resource type="Script" path="res://scenes/crawler/rooms/room_03.gd" id="1_7n2i4"]
 [ext_resource type="Material" uid="uid://bsbdxee7lf52g" path="res://materials/floor_material.tres" id="1_wbc8f"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/crawler/npcs/spawner.gd" id="4_7vt0j"]
 [ext_resource type="Script" path="res://characters/dendritic_cell.gd" id="5_jjmrx"]
 [ext_resource type="PackedScene" uid="uid://cjjueyjd1akmm" path="res://characters/Cell.tscn" id="6_bjkgo"]
+[ext_resource type="PackedScene" uid="uid://c5h2mlix2fy2j" path="res://scenes/RainParticles.tscn" id="7_50446"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_nl6f1"]
 vertices = PackedVector3Array(-4.66584, 0.5, -8.098, -4.53584, 0.5, -11.348, -7.52584, 0.5, -11.348, -7.52584, 0.5, -8.098, 0.40416, 0.5, -4.328, 0.40416, 0.5, -3.938, 3.26416, 0.5, -3.938, -3.88584, 0.5, -8.098, 0.0141602, 0.5, -4.718, 3.26416, 0.5, -7.578, 3.65416, 0.5, -7.968, 4.82416, 0.5, -8.098, 4.69416, 0.5, -11.348, -3.49584, 0.5, -7.708, -3.49584, 0.5, -4.718, 7.55416, 0.5, -8.098, 7.55416, 0.5, -11.348, -0.11584, 0.5, -3.028, 0.40416, 0.5, -0.688, 0.79416, 0.5, -0.688, 0.40416, 0.5, -3.418, 3.26416, 0.5, 0.742001, -0.24584, 0.5, -0.167999, -3.49584, 0.5, 0.352, -0.37584, 0.5, 0.352, -3.49584, 0.5, -3.028, 0.0141602, 0.5, 1.002, 1.44416, 0.5, 6.592, 3.26416, 0.5, 6.592, 3.26416, 0.5, 2.692, -3.62584, 0.5, 7.762, 1.05416, 0.5, 7.762, 1.05416, 0.5, 6.982)
@@ -164,6 +165,8 @@ type = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/DendriticCell/InteractionArea"]
 transform = Transform3D(2.87121, 0, 5.96046e-08, 0, 2.87121, 0, -5.96046e-08, 0, 2.87121, 0, 0.922464, 0)
 shape = SubResource("CylinderShape3D_3vlbe")
+
+[node name="RainParticles" parent="." instance=ExtResource("7_50446")]
 
 [connection signal="area_entered" from="EnterArea" to="." method="_on_enter_area_area_entered"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]

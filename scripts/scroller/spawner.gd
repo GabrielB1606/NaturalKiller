@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	var direction := -Input.get_axis("left", "right")
 	if direction:
 		rotate_y(rotation_speed * delta * direction)
-	if timer.time >= 13:
+	if timer.time > 13:
 		player.position.y -= delta*5
 
 

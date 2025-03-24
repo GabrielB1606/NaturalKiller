@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnjphmqgafef3"]
+[gd_scene load_steps=11 format=3 uid="uid://bnjphmqgafef3"]
 
 [ext_resource type="Material" uid="uid://bsbdxee7lf52g" path="res://materials/floor_material.tres" id="1_kfkwh"]
 [ext_resource type="Script" path="res://scenes/crawler/rooms/room_02.gd" id="1_tensv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/crawler/npcs/spawner.gd" id="4_jaje6"]
 [ext_resource type="Script" path="res://characters/dendritic_cell.gd" id="5_pp0h5"]
 [ext_resource type="PackedScene" uid="uid://cjjueyjd1akmm" path="res://characters/Cell.tscn" id="6_a6lj2"]
+[ext_resource type="PackedScene" uid="uid://c5h2mlix2fy2j" path="res://scenes/RainParticles.tscn" id="7_byxw1"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_nl6f1"]
 vertices = PackedVector3Array(1.538, 0.5, -6.998, -5.742, 0.5, -6.998, -3.922, 0.5, -4.658, 1.538, 0.5, -4.658, 2.578, 0.5, -4.658, 2.968, 0.5, -4.268, 8.428, 0.5, -3.488, 8.428, 0.5, -6.998, 2.968, 0.5, -3.488, -4.442, 0.5, 0.152, -4.182, 0.5, 0.152, -4.182, 0.5, -2.968, -4.572, 0.5, -2.968, -5.092, 0.5, -3.488, -7.302, 0.5, -6.348, -8.342, 0.5, -6.348, -8.342, 0.5, 4.052, -5.222, 0.5, 1.062, -6.782, 0.5, 4.052, 5.438, 0.5, 1.322, 5.438, 0.5, 1.842, 8.428, 0.5, 1.842, 2.578, 0.5, -2.968, 1.668, 0.5, -2.968, 1.668, 0.5, 0.282, 4.788, 0.5, 0.802, -3.142, 0.5, 0.802, -3.272, 0.5, 1.322, -0.412001, 0.5, 1.972, 1.018, 0.5, 0.282, -6.392, 0.5, 4.702, -8.342, 0.5, 6.392, -1.842, 0.5, 4.052, -1.842, 0.5, 3.662, -5.482, 0.5, 4.962, -4.052, 0.5, 6.392, -3.662, 0.5, 6.912, -1.322, 0.5, 4.572, 4.398, 0.5, 5.612, 4.008, 0.5, 5.612, 4.008, 0.5, 6.522, 4.918, 0.5, 5.092, 8.428, 0.5, 6.522, 3.098, 0.5, 5.092, 1.408, 0.5, 6.522, 3.618, 0.5, 2.362, 2.968, 0.5, 2.232, 1.538, 0.5, 2.102, 0.108, 0.5, 4.052, -0.672, 0.5, 4.702, 1.018, 0.5, 7.042, -3.792, 0.5, 8.342, 1.278, 0.5, 8.342)
@@ -173,6 +174,8 @@ type = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NPCs/DendriticCell/InteractionArea"]
 transform = Transform3D(2.87121, 0, 5.96046e-08, 0, 2.87121, 0, -5.96046e-08, 0, 2.87121, 0, 0.922464, 0)
 shape = SubResource("CylinderShape3D_tnj3q")
+
+[node name="RainParticles" parent="." instance=ExtResource("7_byxw1")]
 
 [connection signal="area_entered" from="EnterArea" to="." method="_on_enter_area_area_entered"]
 [connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
