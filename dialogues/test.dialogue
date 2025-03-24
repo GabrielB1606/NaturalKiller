@@ -1,13 +1,27 @@
 ~ start
-Célula Dendrítica: [[Hola]], soy una célula dendrítica. Si me ayudas a conseguir una muestra de una amenaza, puedo buscar linfocitos T. 
-Célula Dendrítica: ¿Necesitas que llame más linfocitos T?. 
-- Si
-	Célula Dendrítica: [[Ok!|¡En camino!]]
+Célula Dendrítica: [[Hola]], soy una célula dendrítica. Mi trabajo es llamar a linfocitos T para que ataquen a las células cancerígenas. 
+Célula Dendrítica: ¿Que necesitas?. 
+- ¡Llama más linfocitos T!
+	Célula Dendrítica: [[¡Ok!|¡En camino!]]
 	do CrawlerManager.dialoguing = false
 	do CrawlerManager.player.set_cell_type(CrawlerManager.TeamEnum.ALLY_T)
 	do CrawlerManager.goto_scroller()
 	=> END
-- [[No|Olvídalo]]
+- ¡Llama células NK!
+	Célula Dendrítica: Ese no es mi trabajo prinicipal... Pero... [[¡Ok!|¡En camino!]]
+	do CrawlerManager.player.set_cell_type(CrawlerManager.TeamEnum.ALLY_NK)
+	do get_tree().reload_current_scene()
+	do CrawlerManager.dialoguing = false
+	=> END
+- ¿Qué más me puedes contar sobre el cáncer y el sistema inmune?
+	Célula Dendrítica: [[¡Por supuesto!|¡Claro!]] [[El sistema inmune se conforma de dos "subsistemas", el adaptativo (de donde provienen los linfocitos T), que responde de manera lenta pero precisa luego de identificar la amenaza; y el innato (de donde provienen las células NK), que es la primera línea de defensa del cuerpo, son respuestas rápidas y capaces de destruir cualquier tipo de amenaza|Existen varios tipos de cáncer según el tipo de tejido del cual se origine: los sarcomas son los que se generan en los tejidos blandos y óseos, los carcinomas se originan en las capas que recubren a los órganos, las leucemias son los cáncer de las células de la sangre y los linfomas son los cáncer que se forman en el sistema linfático ]]
+	do CrawlerManager.dialoguing = false
+	=> END
+- ¿Me puedes dar un consejo?
+	Célula Dendrítica: [[¡Por supuesto!|¡Claro!]] [[La barra que están en la parte inferior de tu pantalla indica cuanto tiempo tienen antes de hacer apoptosis. ¡Intenta hacer todo lo que puedas antes de que se vacíe!|Los linfocitos T son fuertes, pero lentos; mientras que las células NK son más débiles, pero más rápidas. Ten eso en cuenta al momento de llamar una célula u otra]]
+	do CrawlerManager.dialoguing = false
+	=> END
+- [[Nada|Olvídalo]]
 	Célula Dendrítica: Ok.
 	do CrawlerManager.dialoguing = false
 	=> END

@@ -46,7 +46,8 @@ func receive_hit(source: NPCharacter) -> float :
 func _ready() -> void:
 	mov_state_machine.init(self)
 	fight_state_machine.init(self)
-	stats = CharacterStats.create(5.0, 4.5, 100.0, 25.0)
+	stats = CrawlerManager.character_stats[ CrawlerManager.current_player_cell_type ]
+	#stats = CharacterStats.create(5.0, 4.5, 100.0, 25.0)
 	CrawlerManager.set_player(self)
 	cell.onAttack = func check_hit() -> void:
 		if head_hb.has_overlapping_bodies():

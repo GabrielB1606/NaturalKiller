@@ -10,6 +10,11 @@ var current_player_cell_type : TeamEnum = TeamEnum.ALLY_NK
 var current_difficulty : DifficultyEnum = DifficultyEnum.MID
 var current_tcell_qty : int = 0
 
+var character_stats := [
+	CharacterStats.create(4, 4.5, 125, 50),
+	CharacterStats.create(5, 4.5, 100, 25),
+]
+
 #event related state
 var events : Array[RoomStats] = [
 	RoomStats.create_modifier(),                      # No event
