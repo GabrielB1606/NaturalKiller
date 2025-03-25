@@ -108,7 +108,7 @@ func goto_crawler():
 		remove_child(current_scroller)
 		current_scroller.queue_free()
 		current_scroller = null
-		get_tree().reload_current_scene()
+	get_tree().reload_current_scene()
 
 func init(root: CrawlerRoot):
 	room_stats = RoomStats.create()

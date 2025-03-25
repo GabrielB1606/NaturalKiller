@@ -18,6 +18,6 @@ void fragment() {
 		n -= sin(q);
 		s *= 1.2;
 	}
-	
+
 	ALBEDO = vec3(o*0.5, 0.01, 0.0075);
 }

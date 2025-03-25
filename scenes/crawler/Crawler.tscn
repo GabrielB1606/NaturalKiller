@@ -211,15 +211,21 @@ texture_under = ExtResource("5_8ti7b")
 texture_progress = ExtResource("6_tjnxu")
 
 [node name="VideoManager" type="Control" parent="Control"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("10_wf0ds")
 
 [node name="Player" type="VideoStreamPlayer" parent="Control/VideoManager"]
 layout_mode = 1
-offset_right = 1920.0
-offset_bottom = 1088.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 stream = ExtResource("10_0mlxi")
 
 [node name="PauseMenu" parent="Control" instance=ExtResource("7_3ljse")]
