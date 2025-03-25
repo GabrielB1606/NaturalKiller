@@ -27,7 +27,7 @@ func set_body_held(body: CharacterBody3D) -> void:
 
 func get_mouse_world_position(mouse:Vector2) -> Vector3:
 	var distance = 1000
-	var camera:Camera3D = camera_rig.background_cam
+	var camera:Camera3D = camera_rig.base
 	var space:=get_world_3d().direct_space_state
 	var o = camera.project_ray_origin(mouse)
 	var params = PhysicsRayQueryParameters3D.new()

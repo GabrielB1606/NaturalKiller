@@ -174,8 +174,8 @@ func append_room():
 	
 	
 func next_room_stats():
-	var ad : float = 5
-	var hp : float = 8
+	var ad : float = 3
+	var hp : float = 5
 	var mv : float = 0.125
 	var qty : float = 1
 	var freq : float = 0.075
