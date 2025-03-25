@@ -229,7 +229,7 @@ room = NodePath("..")
 [node name="NPCs" type="Node3D" parent="."]
 
 [node name="DendriticCell" type="Node3D" parent="NPCs"]
-transform = Transform3D(-0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, -0.642788, 6.45, -0.0299998, -27.97)
+transform = Transform3D(-0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, -0.173648, -7.14, -0.0299998, -22.81)
 script = ExtResource("5_lssib")
 
 [node name="Visuals" type="Node3D" parent="NPCs/DendriticCell"]

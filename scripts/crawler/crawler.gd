@@ -8,11 +8,15 @@ class_name CrawlerRoot extends Node3D
 @onready var gui: Control = $Control
 @onready var tutorial: Control = $Control/Tutorial
 @onready var exit_tutorial: Button = $"Control/Tutorial/move&attack/Exit"
+@onready var depth_lvl: Label = $Control/Paciente/depth_lvl
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	CrawlerManager.init(self)
 	
+func update_depth_level():
+	depth_lvl.text = str(CrawlerManager.rooms.size()-1)
+
 func show_tutorial():
 	exit_tutorial.grab_focus()
 	get_tree().paused = true

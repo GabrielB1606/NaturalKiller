@@ -2,9 +2,13 @@ class_name DendriticCell extends Node3D
 
 const test_dialogue = preload("res://dialogues/test.dialogue")
 var player_in := false
+const first_dend = preload("res://dialogues/first_dend.dialogue")
 
 func interact():
-	DialogueManager.show_example_dialogue_balloon(test_dialogue, "start")
+	if CrawlerManager.current_room.id == 0:
+		DialogueManager.show_example_dialogue_balloon(first_dend, "start")
+	else:
+		DialogueManager.show_example_dialogue_balloon(test_dialogue, "start")
 	CrawlerManager.dialoguing = true
 
 

@@ -18,6 +18,7 @@ var event := CrawlerManager.EventEnum.NON
 
 var life_init:float
 var total_enemies:int
+var enemies_left:int = 0
 
 func set_door_visible(value: bool):
 	if door != null:
@@ -35,8 +36,9 @@ func _ready() -> void:
 	set_NPCs_visible(false)
 
 func check_complete():
-	if CrawlerManager.current_enemies <= 0 && stats.enemies_qty <= 0:
-		CrawlerManager.current_health += total_enemies*(CrawlerManager.player.stats.current_health/200)
+	if CrawlerManager.current_enemies <= 0 && enemies_left <= 0:
+		#CrawlerManager.current_health += stats.enemies_qty*(CrawlerManager.player.stats.current_health/100)
+		CrawlerManager.current_health += stats.enemies_qty
 		CrawlerManager.current_scene.health_lbl.text = str(int(CrawlerManager.current_health)) + "%"
 		locked = false
 		set_NPCs_visible(true)
@@ -46,7 +48,7 @@ func check_complete():
 		rain_particles.emitting = false
 
 func can_spawn_enemy() -> bool:
-	return spawners_active && CrawlerManager.can_spawn_enemy() && stats.enemies_qty > 0
+	return spawners_active && CrawlerManager.can_spawn_enemy() && enemies_left > 0
 
 func enemy_defeated():
 	stats.enemies_qty -= 1
@@ -54,6 +56,8 @@ func enemy_defeated():
 func onEntered():
 	CrawlerManager.current_room = self
 	if !entered:
+		CrawlerManager.current_scene.update_depth_level()
+		enemies_left = CrawlerManager.get_enemies_qty()
 		CrawlerManager.player.stats = CrawlerManager.get_room_player_stats(event)
 		if event == CrawlerManager.EventEnum.QUIMIO:
 			rain_particles.emitting = true

@@ -59,7 +59,7 @@ func _ready() -> void:
 						cell.emit_attack_particles() 
 						if body_held == b:
 							body_held = null
-							fight_state_machine.dispatch("to_idle")
+							fight_state_machine.dispatch("to_passive")
 							stats.current_health = min(stats.current_health+10, stats.base_health)
 					hit = true
 			if hit:
@@ -70,6 +70,7 @@ func attack():
 	
 func _input(event: InputEvent) -> void:
 	if CrawlerManager.is_locked():
+		stop_moving()
 		return
 	
 	var mov_input := Input.get_vector("left", "right", "forward", "backward")
@@ -87,6 +88,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("hit"):
 		attack()
 	
+	if event.is_action_pressed("interact") || CrawlerManager.dialoguing:
+		stop_moving()
+		movement_vector = Vector3(0,0,0)
+	
 	mov_state_machine.onInput(event, movement_vector, look_vector)
 	fight_state_machine.onInput(event, movement_vector, look_vector)
 
@@ -98,6 +103,10 @@ func _physics_process(delta: float) -> void:
 	mov_state_machine.onPhysicsProcess(delta)
 	fight_state_machine.onPhysicsProcess(delta)
 	move_and_slide()
+	
+func stop_moving():
+	velocity.x = move_toward(0, 0, stats.current_speed)
+	velocity.z = move_toward(0, 0, stats.current_speed)
 
 func _process(delta: float) -> void:
 	if CrawlerManager.current_enemies > 0:

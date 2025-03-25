@@ -11,8 +11,8 @@ var current_difficulty : DifficultyEnum = DifficultyEnum.MID
 var current_tcell_qty : int = 0
 
 var character_stats := [
-	CharacterStats.create(4, 4.5, 125, 50),
-	CharacterStats.create(5, 4.5, 100, 25),
+	CharacterStats.create(4, 4.5, 125, 70),
+	CharacterStats.create(6, 4.5, 100, 45),
 ]
 
 var event_character_stats := [
@@ -29,7 +29,7 @@ var events : Array[RoomStats] = [
 	RoomStats.create_modifier(),                      # No event
 	RoomStats.create_modifier(),                      # Remission
 	RoomStats.create_modifier(0.5, 0, 0.5,  0, -1),   # Quimio
-	RoomStats.create_modifier(1.0, 2, 0  ,  0,  0),   # Radio
+	RoomStats.create_modifier(1.0, -4, -0.5  ,  0,  0),   # Radio
 	RoomStats.create_modifier(1, 0, 0  ,  0,  0),   # Inmuno
 	RoomStats.create_modifier(1  , 4,-0.5, 10,  2),   # Risk
 ]
@@ -65,6 +65,14 @@ var cinematics_played = {
 	"journey": false
 }
 
+func get_cell_as_string() -> String:
+	if current_player_cell_type == TeamEnum.ALLY_T:
+		return "Linfocito T"
+	elif current_player_cell_type == TeamEnum.ALLY_NK:
+		return "Célula Natural Killer (NK)"
+	else:
+		return "Célula"
+
 func get_room_player_stats(event) -> CharacterStats:
 	
 	var char:CharacterStats = character_stats[current_player_cell_type]
@@ -84,9 +92,10 @@ func is_locked() -> bool:
 	return current_scene.video_manager.is_playing() || current_scroller != null || dialoguing || !player.visible
 
 func death():
-	current_health -= (current_room.stats.enemies_qty + current_enemies)
-	current_health = max(1, current_health)
-	current_scene.health_lbl.text = str(int(current_health)) + "%"
+	if player.visible:
+		current_health -= (current_room.enemies_left + current_enemies)/2
+		current_health = max(1, current_health)
+		current_scene.health_lbl.text = str(int(current_health)) + "%"
 
 func goto_scroller():
 	if !cinematics_played["journey"]:
@@ -123,10 +132,11 @@ func init(root: CrawlerRoot):
 	root.map.add_child(rooms[1])
 	rooms[1].global_position.z -= rooms[0].length
 	current_map_length = rooms[0].length + rooms[1].length
+	current_room = rooms[0]
 	rooms[0].id = 0
 	rooms[1].id = 1
 	rooms[0].set_NPCs_visible(true)
-	rooms[1].set_door_visible(false)
+	rooms[1].set_door_visible(true)
 	player.set_cell_type(current_player_cell_type)
 
 #func restart( t_scene)
@@ -144,9 +154,9 @@ func append_room():
 	var room : Room = get_random_room().instantiate()
 	var roll :float= randf_range(0, 100)
 	
-	if roll <= current_health/2.0 && rooms.size()>2:
+	if rooms.size()>4 && roll <= (current_health*2)/3:
 		room.event = CrawlerManager.EventEnum.REM
-	elif roll < 50.0 && rooms.size()>2:
+	elif roll < 60.0 && rooms.size()>2:
 		var ev:EventEnum = randi_range(2,5)
 		room.event = ev
 		room.stats_mod = events[ev]
@@ -160,20 +170,20 @@ func append_room():
 	current_scene.add_child(room)
 	room.global_position.z -= current_map_length
 	current_map_length += room.length
+	next_room_stats()
 	
 	
 func next_room_stats():
 	var ad : float = 5
 	var hp : float = 8
 	var mv : float = 0.125
-	var qty : float = 2
+	var qty : float = 1
 	var freq : float = 0.075
 	
 	if current_difficulty == DifficultyEnum.EASY:
-		ad /= 2
-		hp /= 2
+		ad = 0
+		hp = 2
 		mv /= 2
-		qty /= 2
 		freq /= 2
 	elif current_difficulty == DifficultyEnum.HARD:
 		ad *= 2
@@ -186,7 +196,7 @@ func next_room_stats():
 	room_stats.enemies_hp += hp
 	room_stats.enemies_mv += mv
 	room_stats.enemies_qty += qty
-	room_stats.enemies_freq -= freq
+	room_stats.spwn_freq -= freq
 	
 func get_enemies_hp():
 	var hp : float = room_stats.enemies_hp + events[current_room.event].enemies_hp
@@ -208,6 +218,9 @@ func get_spwn_freq():
 
 func get_time_mult():
 	return room_stats.time_mult + events[current_room.event].time_mult
+
+func get_enemies_qty():
+	return room_stats.enemies_qty + events[current_room.event].enemies_qty
 
 func play_event_animation(event):
 	current_scene.video_manager.play_event(event)

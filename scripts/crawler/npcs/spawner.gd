@@ -19,7 +19,7 @@ func _on_timer_timeout() -> void:
 		add_child(obj)
 		obj.room = room
 		CrawlerManager.current_enemies += 1
-		room.stats.enemies_qty -= 1
+		room.enemies_left -= 1
 		
 	timer.wait_time = CrawlerManager.get_spwn_freq()
 	timer.start()

@@ -24,6 +24,10 @@ func set_legs(running_value:float):
 func set_arms(state: String):
 	animation_tree.get("parameters/upper_body/playback").travel(state)
 
+func get_arms():
+	var sm  : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/upper_body/playback")
+	return sm.get_current_node()
+
 func trigger_attack():
 	if !animation_tree.get("parameters/OneShot/active"):
 		animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)

@@ -1,0 +1,23 @@
+import "res://dialogues/info.dialogue" as dialogues_info
+
+~ start
+Célula Dendrítica: [[Hola]], soy una célula dendrítica. Mi trabajo es tomar muestras de cualquier amenaza para poder llamar linfocitos T. 
+~ start_info
+Célula Dendrítica: Tú, como {{CrawlerManager.get_cell_as_string()}}, tienes que adentrarte en el microambiente tumoral y destruir todas las células cancerígenas que veas.
+Célula Dendrítica: Mientras más te adentres, más fuertes serán las células malignas. En cada zona que liberes de cáncer, habrá una célula como yo lista para tomar una muestra y llamar a un linfocito T.
+Célula Dendrítica: Si una célula cancerígena te daña lo suficiente, harás apoptosis, y la salud de nuestro anfitrión empeorará. Si sientes que estás muy débil, busca a una como yo y haz que llame a otra célula.
+~ choices
+Célula Dendrítica: ¿Estas listo?. 
+- ¡Estoy listo!
+	Célula Dendrítica:[[¡Ok!|¡Buena suerte!]]
+	do CrawlerManager.dialoguing = false
+	do CrawlerManager.rooms[1].set_door_visible(false)
+	=> END
+- ¿Puedes repetir lo que dijiste?
+	=> start_info
+- ¿Qué más me puedes contar sobre el cáncer y el sistema inmune?
+	=>< dialogues_info/info_cancer
+	=> choices
+- ¿Me puedes dar un consejo?
+	=>< dialogues_info/info_game
+	=> choices

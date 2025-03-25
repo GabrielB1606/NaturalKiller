@@ -5,9 +5,10 @@ extends CharacterState
 @onready var cell: Cell = $"../../Visuals/Cell"
 
 func _enter() -> void:
-	#var aniPlayer : AnimationPlayer = character.get_node("AnimationPlayer")
-	#aniPlayer.play(animation)
 	pass
+	#print(cell.get_arms())
+	#if cell.get_arms() == "reaching":
+		#get_root().dispatch("to_reach")
 
 func onInput(event: InputEvent, movement_vector: Vector3, look_vector: Vector3):
 	if event.is_action_pressed("reach") || Input.is_action_pressed("reach"):

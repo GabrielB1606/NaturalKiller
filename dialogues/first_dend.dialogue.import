@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://dyt2fnx0a6bod"
+path="res://.godot/imported/first_dend.dialogue-25f33b8cd5e44548a1e0505b42f5e307.tres"
+
+[deps]
+
+source_file="res://dialogues/first_dend.dialogue"
+dest_files=["res://.godot/imported/first_dend.dialogue-25f33b8cd5e44548a1e0505b42f5e307.tres"]
+
+[params]
+
+defaults=true

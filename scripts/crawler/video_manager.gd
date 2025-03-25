@@ -22,11 +22,11 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("skip") && !ending:
-		stop()
 		if player.stream == VIAJE:
 			CrawlerManager.goto_scroller()
-		elif player.stream == INTRO:
+		elif player.stream == INTRO && player.is_playing():
 			CrawlerManager.current_scene.show_tutorial()
+		stop()
 
 func stop():
 	player.stop()
