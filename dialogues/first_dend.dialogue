@@ -1,7 +1,7 @@
 import "res://dialogues/info.dialogue" as dialogues_info
 
 ~ start
-Célula Dendrítica: [[Hola]], soy una célula dendrítica. Mi trabajo es tomar muestras de cualquier amenaza para poder llamar linfocitos T. 
+Célula Dendrítica: [[Hola]], soy una célula dendrítica. Mi trabajo es tomar muestras de cualquier amenaza para poder llamar linfocitos T.
 ~ start_info
 Célula Dendrítica: Tú, como {{CrawlerManager.get_cell_as_string()}}, tienes que adentrarte en el microambiente tumoral y destruir todas las células cancerígenas que veas.
 Célula Dendrítica: Mientras más te adentres, más fuertes serán las células malignas. En cada zona que liberes de cáncer, habrá una célula como yo lista para tomar una muestra y llamar a un linfocito T.

@@ -91,4 +91,5 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_nisjl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_v7h3a")
 text = "Ir al menú"
 
+[connection signal="pressed" from="HBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="HBoxContainer/Exit" to="." method="_on_exit_pressed"]

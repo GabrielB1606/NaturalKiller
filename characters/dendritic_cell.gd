@@ -6,7 +6,11 @@ const first_dend = preload("res://dialogues/first_dend.dialogue")
 
 func interact():
 	if CrawlerManager.current_room.id == 0:
-		DialogueManager.show_example_dialogue_balloon(first_dend, "start")
+		if CrawlerManager.first_dend:
+			CrawlerManager.first_dend = false
+			DialogueManager.show_example_dialogue_balloon(first_dend, "start")
+		else:
+			DialogueManager.show_example_dialogue_balloon(first_dend, "choices")
 	else:
 		DialogueManager.show_example_dialogue_balloon(test_dialogue, "start")
 	CrawlerManager.dialoguing = true

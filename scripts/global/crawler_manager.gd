@@ -15,6 +15,8 @@ var character_stats := [
 	CharacterStats.create(6, 4.5, 100, 45),
 ]
 
+var first_dend:bool = true
+
 var event_character_stats := [
 	CharacterStats.create(0, 4.5, 0, 0), # No event
 	CharacterStats.create(0, 4.5, 0, 0), # Remission
@@ -45,6 +47,7 @@ var room_prefabs : Array[Resource] = [
 	preload("res://scenes/crawler/rooms/room_02.tscn"),
 	preload("res://scenes/crawler/rooms/room_03.tscn"),
 	preload("res://scenes/crawler/rooms/room_04.tscn"),
+	preload("res://scenes/crawler/rooms/room_05.tscn"),
 ]
 var rooms:Array[Room]
 
@@ -52,7 +55,7 @@ var rooms:Array[Room]
 var current_health:float = 20.0
 var current_enemies:int = 0
 var current_map_length:float = 0
-var cap_enemies:int = 8
+var cap_enemies:int = 15
 var current_scene:CrawlerRoot
 var current_scroller:Node3D
 var current_room:Room
@@ -93,7 +96,7 @@ func is_locked() -> bool:
 
 func death():
 	if player.visible:
-		current_health -= (current_room.enemies_left + current_enemies)/2
+		current_health -= (2*(current_room.enemies_left + current_enemies))/3
 		current_health = max(1, current_health)
 		current_scene.health_lbl.text = str(int(current_health)) + "%"
 
@@ -154,14 +157,20 @@ func append_room():
 	var room : Room = get_random_room().instantiate()
 	var roll :float= randf_range(0, 100)
 	
-	if rooms.size()>4 && roll <= (current_health*2)/3:
+	if rooms.size() == 3:
+		room.event = CrawlerManager.EventEnum.QUIMIO
+		room.stats_mod = events[CrawlerManager.EventEnum.QUIMIO]
+	elif rooms.size() == 5:
 		room.event = CrawlerManager.EventEnum.REM
-	elif roll < 60.0 && rooms.size()>2:
-		var ev:EventEnum = randi_range(2,5)
-		room.event = ev
-		room.stats_mod = events[ev]
-	else:
-		room.stats_mod = events[0]
+	
+	#if rooms.size()>4 && roll <= (current_health*2)/3:
+		#room.event = CrawlerManager.EventEnum.REM
+	#elif roll < 60.0 && rooms.size()>2:
+		#var ev:EventEnum = randi_range(2,5)
+		#room.event = ev
+		#room.stats_mod = events[ev]
+	#else:
+		#room.stats_mod = events[0]
 	
 	room.stats.enemies_qty = room_stats.enemies_qty
 	
@@ -208,7 +217,8 @@ func get_enemies_ad():
 
 func get_enemies_mv():
 	var mv : float = room_stats.enemies_mv + events[current_room.event].enemies_mv
-	return randf_range(mv-0.25, mv+0.25)
+	var mv_var : float = mv/3
+	return randf_range(mv-mv_var, mv+mv_var)
 
 func get_spwn_freq():
 	var freq : float = room_stats.spwn_freq
@@ -239,7 +249,7 @@ func set_event_label(event):
 			current_scene.event_lbl.text = "--"
 
 func get_random_room() -> Resource:
-	return room_prefabs[randi_range(1, 4)]
+	return room_prefabs[randi_range(1, room_prefabs.size()-1)]
 
 func can_spawn_enemy() -> bool:
 	return current_enemies < cap_enemies && !is_locked()

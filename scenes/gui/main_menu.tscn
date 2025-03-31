@@ -151,6 +151,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
 text = "Salir"
 
 [node name="Options" type="Button" parent="Main/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
@@ -196,7 +197,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
-text = "Fácil"
+text = "Didáctico"
 
 [node name="mid" type="Button" parent="Dificultad"]
 layout_mode = 2
@@ -212,7 +213,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
-text = "Regular"
+text = "Normal"
 
 [node name="hard" type="Button" parent="Dificultad"]
 layout_mode = 2
@@ -228,7 +229,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0o42q")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l1uj8")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kanxl")
-text = "Difícil"
+text = "Retador"
 
 [node name="back" type="Button" parent="Dificultad"]
 layout_mode = 2
